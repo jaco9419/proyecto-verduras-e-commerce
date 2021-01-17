@@ -1,13 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
 * {
   margin: 0;
   padding: 0;
 }
 
 :root {
-  --ff-primary: 'Source Sans Pro', sans-serif;
+  --ff-primary: 'Montserrat', sans-serif;
   --ff-secondary: 'Source Code Pro', monospace;
 
-  --fw-regular: 300;
+  --fw-light: 200;
+  --fw-regular: 450;
+  --fw-semibold: 600;
   --fw-bold: 900;
 
   --clr-main: #FD9317;
@@ -36,4 +40,11 @@
 html {
   font-size: 62.5%;
   box-sizing: border-box;
+}
+
+body {
+  background-color: var(--clr-bg);
+  font-size: var(--fs-body);
+  font-weight: var(--fw-regular);
+  font-family: var(--ff-primary);
 }

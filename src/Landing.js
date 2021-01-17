@@ -1,10 +1,13 @@
 import React from 'react';
-import './Landing.css';
+import './style/Landing.css';
+import Header from './Header';
 import Productos from './Productos';
+import SearchBar from './SearchBar';
 
 function Landing() {
     return <div>
-        <h1>Landing</h1>
+        <Header />
+        <SearchBar />
         <Productos />
     </div>;
 }
