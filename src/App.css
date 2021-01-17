@@ -37,6 +37,16 @@
       0.1em 0.1em 0.5em 0.05em rgba(0, 0, 0, 0.1);
 }
 
+@media (min-width: 800px) {
+  :root {
+      --fs-h1: 3.3rem;
+      --fs-h2: 2.5rem;
+      --fs-h3: 2rem;
+      --fs-body: 1.6rem;
+      --fs-button: 1.6rem;
+  }
+}
+
 html {
   font-size: 62.5%;
   box-sizing: border-box;
