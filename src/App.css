@@ -1,0 +1,39 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --ff-primary: 'Source Sans Pro', sans-serif;
+  --ff-secondary: 'Source Code Pro', monospace;
+
+  --fw-regular: 300;
+  --fw-bold: 900;
+
+  --clr-main: #FD9317;
+  --clr-secondary: #DA821A;
+  --clr-bg: #FBEFE2;
+  --clr-dark: #0F0F0F;
+  --clr-light: #F8F9FB;
+  --clr-gray: #E5E5E5;
+  --clr-blue: #17A8FD;
+
+  --fs-h1: 3rem;
+  --fs-h2: 2rem;
+  --fs-h3: 1.7rem;
+  --fs-body: 1.4rem;
+  --fs-button: 1.5rem;
+
+  --bs: 0.2em 0.2em 1.5em 0.3em rgba(0, 0, 0, 0.15),
+      0.125em 0.125em 1em 0.2em rgba(0, 0, 0, 0.25);
+
+  --bs-2: 0.1em 0.1em 1.5em 0.2em rgba(0, 0, 0, 0.15);
+
+  --bs-3: 0.05em 0.05em 1.5em 0.1em rgba(0, 0, 0, 0.15),
+      0.1em 0.1em 0.5em 0.05em rgba(0, 0, 0, 0.1);
+}
+
+html {
+  font-size: 62.5%;
+  box-sizing: border-box;
+}
