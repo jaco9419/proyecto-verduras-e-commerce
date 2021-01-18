@@ -6,7 +6,7 @@ import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 
 function Header() {
     return (
-        <nav className="header">
+        <header className="header">
             <div className="header__figure">
                 <div className="header__skewed"></div>
 
@@ -15,7 +15,7 @@ function Header() {
                 </Link>
             </div>
 
-            <div className="header__links">
+            <nav className="header__links">
                 <Link to="/productos" className="header__link">
                     <p>Productos</p>
                 </Link>
@@ -28,8 +28,8 @@ function Header() {
                         </div>
                     </div>
                 </Link>
-            </div>
-        </nav>
+            </nav>
+        </header>
     );
 }
 

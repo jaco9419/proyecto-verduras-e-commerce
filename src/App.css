@@ -29,8 +29,7 @@
   --fs-button: 1.5rem;
   --fs-icon: 3.5rem;
 
-  --bs: 0.2em 0.2em 1.5em 0.3em rgba(0, 0, 0, 0.15),
-      0.125em 0.125em 1em 0.2em rgba(0, 0, 0, 0.25);
+  --bs: 7px 7px 15px 0px rgba(0,0,0,0.1);
 
   --bs-2: 0.1em 0.1em 1.5em 0.2em rgba(0, 0, 0, 0.15);
 

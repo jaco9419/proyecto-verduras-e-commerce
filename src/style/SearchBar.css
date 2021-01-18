@@ -19,6 +19,7 @@
     border: var(--clr-gray) 1px solid;
     background-color: var(--clr-light);
     outline: none;
+    transition: .2s;
 }
 
 .search__bar__input:focus {
@@ -31,3 +32,9 @@
     position: absolute;
     right: 5px;
 }
+
+@media (min-width: 460px) {
+    .search__bar {
+        width: 80%;
+    }
+  }

@@ -3,9 +3,11 @@
     width: 100vw;
     background-color: var(--clr-main);
     position: sticky;
+    top: 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    z-index: 100;
 }
 
 .header__figure {
@@ -85,4 +87,12 @@
 
 .header__cart__number p {
     font-size: 1rem;
+}
+
+.header__link__icon:hover,
+.header__link__icon:hover > .home__icon,
+.header__link:hover,
+.header__pedidos:hover,
+.header__pedidos:hover > .cart__icon {
+    color: var(--clr-gray) !important;
 }
