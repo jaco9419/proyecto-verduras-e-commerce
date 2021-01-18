@@ -18,7 +18,7 @@
   --clr-secondary: #DA821A;
   --clr-bg: #FBEFE2;
   --clr-dark: #0F0F0F;
-  --clr-light: #F8F9FB;
+  --clr-light: #FFFFFF;
   --clr-gray: #E5E5E5;
   --clr-blue: #17A8FD;
 
@@ -27,6 +27,7 @@
   --fs-h3: 1.7rem;
   --fs-body: 1.4rem;
   --fs-button: 1.5rem;
+  --fs-icon: 3.5rem;
 
   --bs: 0.2em 0.2em 1.5em 0.3em rgba(0, 0, 0, 0.15),
       0.125em 0.125em 1em 0.2em rgba(0, 0, 0, 0.25);

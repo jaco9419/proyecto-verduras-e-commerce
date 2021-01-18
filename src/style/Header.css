@@ -32,7 +32,7 @@
 }
 
 .home__icon {
-    font-size: 3.5rem !important;
+    font-size: var(--fs-icon) !important;
     color: var(--clr-light);
 }
 
@@ -55,7 +55,7 @@
         color: var(--clr-light);
         font-size: var(--fs-h3);
     }
-  }
+}
 
 .header__pedidos {
     display: flex;
@@ -64,7 +64,7 @@
 }
 
 .cart__icon {
-    font-size: 3.5rem !important;
+    font-size: var(--fs-icon) !important;
     color: var(--clr-light);
     text-decoration: none;
     margin: 0.5rem;
