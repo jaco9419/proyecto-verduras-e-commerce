@@ -4,7 +4,7 @@ import SearchBar from './SearchBar';
 
 function Landing() {
     return (
-        <div>
+        <div className="landing">
             <div className="landing__message">
                 <p>Encontrá las verduras y frutas más frescas y hacé tu pedido</p>
             </div>

@@ -26,6 +26,11 @@
     border: var(--clr-main) 1px solid;
   }
 
+.search__bar__input::placeholder {
+    font-family: var(--ff-primary);
+    color: var(--clr-dark-gray);
+}
+
 .search__icon {
     color: var(--clr-gray);
     font-size: var(--fs-icon) !important;
