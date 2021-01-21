@@ -46,6 +46,10 @@
     font-weight: var(--fw-semibold);
 }
 
+.product__unit {
+    margin-top: 0.5rem;
+}
+
 .footer {
     display: flex;
     align-items: center;
