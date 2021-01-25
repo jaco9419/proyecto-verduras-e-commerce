@@ -1,6 +1,7 @@
 import React from 'react';
 import './style/Landing.css';
 import SearchBar from './SearchBar';
+import data from './API/data';
 
 function Landing() {
     return (
@@ -11,113 +12,30 @@ function Landing() {
             <SearchBar />
             <div className="products__container">
 
+                {
+                    data.map((product, i) => (
+                        <div className="product" key={i}>
+                            <img
+                                className="product__img"
+                                src={product.src}
+                                alt={product.title}
+                            />
+                            <div className="product__line"></div>
+
+                            <div className="product__subcontainer">
+                                <div className="product__description">
+                                    <p className="product__title">{product.title}</p>
+                                    <p className="product__unit">Unidad: {product.unidad}</p>
+                                </div>
+                                <div className="product__buttons"></div>
+                            </div>
+                        </div>
+                    ))
+                }
+                
                 
 
-                <div className="product">
-                    <img
-                        className="product__img"
-                        src="https://http2.mlstatic.com/D_NQ_NP_996465-MLA41827779757_052020-V.webp"
-                        alt="tomates"
-                    />
-                    <div className="product__line"></div>
-
-                    <div className="product__subcontainer">
-                        <div className="product__description">
-                            <p className="product__title">Tomates Redondos</p>
-                            <p className="product__unit">Unidad: cajas</p>
-                        </div>
-                        <div className="product__buttons"></div>
-                    </div>
-                </div>
-
-                <div className="product">
-                    <img
-                        className="product__img"
-                        src="https://http2.mlstatic.com/D_NQ_NP_996465-MLA41827779757_052020-V.webp"
-                        alt="tomates"
-                    />
-                    <div className="product__line"></div>
-
-                    <div className="product__subcontainer">
-                        <div className="product__description">
-                            <p className="product__title">Tomates Redondos</p>
-                            <p className="product__unit">Unidad: cajas</p>
-                        </div>
-                        <div className="product__buttons"></div>
-                    </div>
-                </div>
-
-                <div className="product">
-                    <img
-                        className="product__img"
-                        src="https://http2.mlstatic.com/D_NQ_NP_996465-MLA41827779757_052020-V.webp"
-                        alt="tomates"
-                    />
-                    <div className="product__line"></div>
-
-                    <div className="product__subcontainer">
-                        <div className="product__description">
-                            <p className="product__title">Tomates Redondos</p>
-                            <p className="product__unit">Unidad: cajas</p>
-                        </div>
-                        <div className="product__buttons"></div>
-                    </div>
-                </div>
-
-
-                <div className="product">
-                    <img
-                        className="product__img"
-                        src="https://http2.mlstatic.com/D_NQ_NP_996465-MLA41827779757_052020-V.webp"
-                        alt="tomates"
-                    />
-
-                    <div className="product__line"></div>
-
-                    <div className="product__subcontainer">
-                        <div className="product__description">
-                            <p className="product__title">Tomates Redondos</p>
-                            <p className="product__unit">Unidad: cajas</p>
-                        </div>
-                        <div className="product__buttons"></div>
-                    </div>
-                </div>
-
-                <div className="product">
-                    <img
-                        className="product__img"
-                        src="https://http2.mlstatic.com/D_NQ_NP_996465-MLA41827779757_052020-V.webp"
-                        alt="tomates"
-                    />
-
-                    <div className="product__line"></div>
-
-                    <div className="product__subcontainer">
-                        <div className="product__description">
-                            <p className="product__title">Tomates Redondos</p>
-                            <p className="product__unit">Unidad: cajas</p>
-                        </div>
-                        <div className="product__buttons"></div>
-                    </div>
-                </div>
-
-                <div className="product">
-                    <img
-                        className="product__img"
-                        src="https://http2.mlstatic.com/D_NQ_NP_996465-MLA41827779757_052020-V.webp"
-                        alt="tomates"
-                    />
-
-                    <div className="product__line"></div>
-
-                    <div className="product__subcontainer">
-                        <div className="product__description">
-                            <p className="product__title">Tomates Redondos</p>
-                            <p className="product__unit">Unidad: cajas</p>
-                        </div>
-                        <div className="product__buttons"></div>
-                    </div>
-                </div>
+                
             </div>
 
             <footer className="footer">

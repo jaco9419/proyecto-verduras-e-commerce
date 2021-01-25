@@ -14,14 +14,15 @@
   --fw-semibold: 600;
   --fw-bold: 900;
 
-  --clr-main: #FD9317;
-  --clr-secondary: #DA821A;
-  --clr-bg: #FBEFE2;
+  --clr-main: #17A8FD;
+  --clr-secondary: #4DBCFE;
+  --clr-bg: #F8F9FB;
   --clr-dark: #0F0F0F;
   --clr-light: #FFFFFF;
-  --clr-gray: #E5E5E5;
+  --clr-gray: #C2E5FA;
   --clr-dark-gray: #bdbdbd;
   --clr-blue: #17A8FD;
+  --clr-red: #FF2626;
 
   --fs-h1: 3rem;
   --fs-h2: 2rem;

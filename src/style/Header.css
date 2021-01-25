@@ -73,7 +73,7 @@
 }
 
 .header__cart__number {
-    background-color: var(--clr-blue);
+    background-color: var(--clr-red);
     width: 1.8rem;
     height: 1.8rem;
     border-radius: 50%;

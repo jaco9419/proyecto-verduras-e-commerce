@@ -34,7 +34,7 @@
 .product__line {
     width: 2px;
     height: 80%;
-    background-color: var(--clr-bg);
+    background-color: var(--clr-gray);
 }
 
 .product__subcontainer {
