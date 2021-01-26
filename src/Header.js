@@ -16,7 +16,7 @@ function Header() {
             </div>
 
             <nav className="header__links">
-                <Link to="/productos" className="header__link">
+                <Link to="/productos" className="header__link header__productos">
                     <p>Productos</p>
                 </Link>
                 <Link to="/pedidos" className="header__link">

@@ -36,6 +36,7 @@
 .home__icon {
     font-size: var(--fs-icon) !important;
     color: var(--clr-light);
+    transition: 0.3s !important;
 }
 
 .header__links {
@@ -48,6 +49,10 @@
     text-decoration: none;
     color: var(--clr-light);
     font-size: var(--fs-h3);
+}
+
+.header__productos {
+    transition: 0.3s !important;
 }
 
 @media (min-width: 800px) {
@@ -63,6 +68,7 @@
     display: flex;
     align-items: center;
     position: relative;
+    transition: 0.3s !important;
 }
 
 .cart__icon {
@@ -70,6 +76,7 @@
     color: var(--clr-light);
     text-decoration: none;
     margin: 0.5rem;
+    transition: 0.3s !important;
 }
 
 .header__cart__number {
@@ -94,5 +101,5 @@
 .header__link:hover,
 .header__pedidos:hover,
 .header__pedidos:hover > .cart__icon {
-    color: var(--clr-gray) !important;
+    color: var(--clr-hover) !important;
 }

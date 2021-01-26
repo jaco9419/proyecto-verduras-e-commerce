@@ -23,6 +23,7 @@
   --clr-dark-gray: #bdbdbd;
   --clr-blue: #17A8FD;
   --clr-red: #FF2626;
+  --clr-hover: #fffb00;
 
   --fs-h1: 3rem;
   --fs-h2: 2rem;
@@ -59,4 +60,8 @@ body {
   font-size: var(--fs-body);
   font-weight: var(--fw-regular);
   font-family: var(--ff-primary);
+}
+
+button {
+  cursor: pointer;
 }
