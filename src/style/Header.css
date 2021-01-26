@@ -69,6 +69,7 @@
     align-items: center;
     position: relative;
     transition: 0.3s !important;
+    margin-right: 1rem;
 }
 
 .cart__icon {

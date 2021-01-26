@@ -29,6 +29,7 @@
   --fs-h2: 2rem;
   --fs-h3: 1.7rem;
   --fs-body: 1.4rem;
+  --fs-small: 1.2rem;
   --fs-button: 1.5rem;
   --fs-icon: 3.5rem;
 
@@ -46,6 +47,7 @@
       --fs-h2: 2.5rem;
       --fs-h3: 2rem;
       --fs-body: 1.6rem;
+      --fs-small: 1.2rem;
       --fs-button: 1.6rem;
   }
 }

@@ -53,6 +53,16 @@
     margin-top: 0.5rem;
 }
 
+.product__price {
+    font-weight: var(--fw-semibold);
+    font-size: var(--fs-h3);
+}
+
+.product__price__extra {
+    font-size: var(--fs-body);
+    font-weight: var(--fw-regular);
+}
+
 .product__buttons {
     display: flex;
     justify-content: space-between;
@@ -153,5 +163,9 @@
     .product__subcontainer {
         padding: 1rem;
         padding-right: 0.5rem;
+    }
+
+    .product__price {
+        margin-top: 1rem;
     }
   }
