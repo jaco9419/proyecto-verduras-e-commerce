@@ -1,8 +1,25 @@
 import React from 'react';
 import MinusIcon from '@material-ui/icons/Remove';
 import PlusIcon from '@material-ui/icons/Add';
+import { useStateValue } from './StateProvider';
 
 function ProductosLanding({ src, title, key, unidad, precio }) {
+
+    const [{ basket }, dispatch] = useStateValue();
+
+    const addToBasket = () => {
+        dispatch({
+            type: "ADD_TO_BASKET",
+            item: {
+                src,
+                title,
+                key,
+                unidad,
+                precio
+            }
+        })
+    }
+
     return <div className="product" key={key}>
             <img
                 className="product__img"
@@ -40,7 +57,7 @@ function ProductosLanding({ src, title, key, unidad, precio }) {
                             <PlusIcon className="plus__icon btn__quantity btn__control" />
                         </button>
                     </div>
-                    <button className="btn__quantity btn__add">
+                    <button onClick={addToBasket} className="btn__quantity btn__add">
                         Agregar
                     </button>
                 </div>
