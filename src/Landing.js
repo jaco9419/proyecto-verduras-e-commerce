@@ -3,8 +3,12 @@ import './style/Landing.css';
 import SearchBar from './SearchBar';
 import data from './API/data';
 import ProductosLanding from './ProductosLanding';
+import { useStateValue } from './StateProvider';
 
 function Landing() {
+
+    const [{ qty }] = useStateValue();
+
     return (
         <div className="landing">
             <div className="landing__message">
@@ -18,9 +22,11 @@ function Landing() {
                 <ProductosLanding 
                     src={product.src}
                     title={product.title}
-                    key={i}
                     unidad={product.unidad}
                     precio={product.precio}
+                    id={product.id}
+                    qty={qty}
+                    key={i}
                 />
             ))}
             </div>

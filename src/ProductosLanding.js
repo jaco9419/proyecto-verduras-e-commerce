@@ -3,7 +3,7 @@ import MinusIcon from '@material-ui/icons/Remove';
 import PlusIcon from '@material-ui/icons/Add';
 import { useStateValue } from './StateProvider';
 
-function ProductosLanding({ src, title, key, unidad, precio }) {
+function ProductosLanding({ src, title, unidad, precio, id, qty }) {
     const [{ basket }, dispatch] = useStateValue();
 
     const addToBasket = () => {
@@ -12,15 +12,30 @@ function ProductosLanding({ src, title, key, unidad, precio }) {
             item: {
                 src,
                 title,
-                key,
                 unidad,
                 precio,
+                id,
+                qty,
+            },
+        });
+    };
+
+    const increaseQty = () => {
+        dispatch({
+            type: 'INCREASE_QTY',
+            item: {
+                src,
+                title,
+                unidad,
+                precio,
+                id,
+                qty,
             },
         });
     };
 
     return (
-        <div className="product" key={key}>
+        <div className="product" key={id}>
             <img className="product__img" src={src} alt={title} />
             <div className="product__line"></div>
 
@@ -47,8 +62,11 @@ function ProductosLanding({ src, title, key, unidad, precio }) {
                         <button className="btn__quantity btn__control btn__decrease">
                             <MinusIcon className="minus__icon btn__quantity btn__control" />
                         </button>
-                        <p className="product__quantity">3</p>
-                        <button className="btn__control btn__increase btn__quantity">
+                        <p className="product__quantity">{qty}</p>
+                        <button
+                            onClick={increaseQty}
+                            className="btn__control btn__increase btn__quantity"
+                        >
                             <PlusIcon className="plus__icon btn__quantity btn__control" />
                         </button>
                     </div>
