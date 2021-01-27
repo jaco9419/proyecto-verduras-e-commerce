@@ -4,48 +4,43 @@ import PlusIcon from '@material-ui/icons/Add';
 import { useStateValue } from './StateProvider';
 
 function ProductosLanding({ src, title, key, unidad, precio }) {
-
     const [{ basket }, dispatch] = useStateValue();
 
     const addToBasket = () => {
         dispatch({
-            type: "ADD_TO_BASKET",
+            type: 'ADD_TO_BASKET',
             item: {
                 src,
                 title,
                 key,
                 unidad,
-                precio
-            }
-        })
-    }
+                precio,
+            },
+        });
+    };
 
-    return <div className="product" key={key}>
-            <img
-                className="product__img"
-                src={src}
-                alt={title}
-            />
+    return (
+        <div className="product" key={key}>
+            <img className="product__img" src={src} alt={title} />
             <div className="product__line"></div>
 
             <div className="product__subcontainer">
                 <div className="product__description">
-                    <p className="product__title">
-                        {title}
-                    </p>
-                    <p className="product__unit">
-                        Unidad: {unidad}
-                    </p>
+                    <p className="product__title">{title}</p>
+                    <p className="product__unit">Unidad: {unidad}</p>
 
-                    {
-                        precio ? 
+                    {precio ? (
                         <p className="product__price">
                             <span className="product__price__extra">$</span>
                             {precio}
-                            <span className="product__price__extra"> por unidad</span>
-                        </p> : <div></div>
-                    }
-                    
+                            <span className="product__price__extra">
+                                {' '}
+                                por unidad
+                            </span>
+                        </p>
+                    ) : (
+                        <div></div>
+                    )}
                 </div>
                 <div className="product__buttons">
                     <div className="btn__quantity__box">
@@ -57,12 +52,16 @@ function ProductosLanding({ src, title, key, unidad, precio }) {
                             <PlusIcon className="plus__icon btn__quantity btn__control" />
                         </button>
                     </div>
-                    <button onClick={addToBasket} className="btn__quantity btn__add">
+                    <button
+                        onClick={addToBasket}
+                        className="btn__quantity btn__add"
+                    >
                         Agregar
                     </button>
                 </div>
             </div>
         </div>
+    );
 }
 
 export default ProductosLanding;

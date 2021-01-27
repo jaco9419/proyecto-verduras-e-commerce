@@ -1,6 +1,6 @@
 .header {
     height: 6.5rem;
-    width: 100vw;
+    width: 100%;
     background-color: var(--clr-main);
     position: sticky;
     top: 0;
