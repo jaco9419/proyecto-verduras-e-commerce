@@ -3,7 +3,7 @@ import MinusIcon from '@material-ui/icons/Remove';
 import PlusIcon from '@material-ui/icons/Add';
 import { useStateValue } from './StateProvider';
 
-function ProductosLanding({ src, title, unidad, precio, id, qty }) {
+function ProductosLanding({ src, title, unidad, precio, id, qty, index }) {
     const [{ basket }, dispatch] = useStateValue();
 
     const addToBasket = () => {
@@ -15,7 +15,8 @@ function ProductosLanding({ src, title, unidad, precio, id, qty }) {
                 unidad,
                 precio,
                 id,
-                qty,
+                qty: qty[index],
+                index,
             },
         });
     };
@@ -29,7 +30,23 @@ function ProductosLanding({ src, title, unidad, precio, id, qty }) {
                 unidad,
                 precio,
                 id,
-                qty,
+                qty: qty[index],
+                index,
+            },
+        });
+    };
+
+    const decreaseQty = () => {
+        dispatch({
+            type: 'DECREASE_QTY',
+            item: {
+                src,
+                title,
+                unidad,
+                precio,
+                id,
+                qty: qty[index],
+                index,
             },
         });
     };
@@ -59,10 +76,13 @@ function ProductosLanding({ src, title, unidad, precio, id, qty }) {
                 </div>
                 <div className="product__buttons">
                     <div className="btn__quantity__box">
-                        <button className="btn__quantity btn__control btn__decrease">
+                        <button
+                            onClick={decreaseQty}
+                            className="btn__quantity btn__control btn__decrease"
+                        >
                             <MinusIcon className="minus__icon btn__quantity btn__control" />
                         </button>
-                        <p className="product__quantity">{qty}</p>
+                        <p className="product__quantity">{qty[index]}</p>
                         <button
                             onClick={increaseQty}
                             className="btn__control btn__increase btn__quantity"

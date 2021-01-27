@@ -26,7 +26,7 @@ function Landing() {
                     precio={product.precio}
                     id={product.id}
                     qty={qty}
-                    key={i}
+                    index={i}
                 />
             ))}
             </div>

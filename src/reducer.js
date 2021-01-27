@@ -1,10 +1,11 @@
 export const initialState = {
     basket: [],
-    qty: 1
+    qty: Array(7).fill(1),
 }
 
 const reducer = (state, action) => {
-    console.log(action.item);
+    //console.log(action.item);
+    console.log(state.basket);
     switch(action.type) {
         case 'ADD_TO_BASKET':
             // Logic
@@ -12,11 +13,26 @@ const reducer = (state, action) => {
                 ...state,
                 basket: [...state.basket, action.item]
             };
-        case 'INCREASE_QTY':
+        case 'INCREASE_QTY': {
+            const qtyIndex = action.item.index;
+            const newQty = [...state.qty];
+            newQty[qtyIndex]++;
             return {
                 ...state,
-                qty: ++state.qty,
+                qty: [...newQty]
             };
+        }
+        case 'DECREASE_QTY': {
+            const qtyIndex = action.item.index;
+            const newQty = [...state.qty];
+            if (newQty[qtyIndex] > 1) {
+                newQty[qtyIndex]--;
+            }
+            return {
+                ...state,
+                qty: [...newQty]
+            };
+        }
         case 'REMOVE_FROM_BASKET':
             // Logic
             return { state };
