@@ -1,6 +1,8 @@
+import data from './API/data';
+
 export const initialState = {
     basket: [],
-    qty: Array(7).fill(1),
+    qty: Array(data.length).fill(1),
 }
 
 const reducer = (state, action) => {

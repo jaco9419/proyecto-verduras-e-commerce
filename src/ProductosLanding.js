@@ -25,11 +25,6 @@ function ProductosLanding({ src, title, unidad, precio, id, qty, index }) {
         dispatch({
             type: 'INCREASE_QTY',
             item: {
-                src,
-                title,
-                unidad,
-                precio,
-                id,
                 qty: qty[index],
                 index,
             },
@@ -40,11 +35,6 @@ function ProductosLanding({ src, title, unidad, precio, id, qty, index }) {
         dispatch({
             type: 'DECREASE_QTY',
             item: {
-                src,
-                title,
-                unidad,
-                precio,
-                id,
                 qty: qty[index],
                 index,
             },
