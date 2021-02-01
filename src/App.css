@@ -20,7 +20,7 @@
   --clr-dark: #0F0F0F;
   --clr-light: #FFFFFF;
   --clr-gray: #C2E5FA;
-  --clr-dark-gray: #bdbdbd;
+  --clr-dark-gray: #8d8d8d;
   --clr-blue: #17A8FD;
   --clr-red: #FF2626;
   --clr-hover: #fffb00;
@@ -35,7 +35,7 @@
 
   --bs: 7px 7px 15px 0px rgba(0,0,0,0.1);
 
-  --bs-2: 0.1em 0.1em 1.5em 0.2em rgba(0, 0, 0, 0.15);
+  --bs-2: 3px 3px 10px 0px rgba(0, 0, 0, 0.1);
 
   --bs-3: 0.05em 0.05em 1.5em 0.1em rgba(0, 0, 0, 0.15),
       0.1em 0.1em 0.5em 0.05em rgba(0, 0, 0, 0.1);
