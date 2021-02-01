@@ -18,6 +18,7 @@ function Landing() {
             </div>
             <SearchBar />
             <div className="products__container">
+            {/* Se obtienen los productos para la landing en base a los productos en API o BD */}
             {data.map((product, i) => (
                 <ProductosLanding 
                     src={product.src}
@@ -27,6 +28,7 @@ function Landing() {
                     id={product.id}
                     qty={qty}
                     index={i}
+                    key={i}
                 />
             ))}
             </div>

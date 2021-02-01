@@ -3,6 +3,8 @@ import MinusIcon from '@material-ui/icons/Remove';
 import PlusIcon from '@material-ui/icons/Add';
 import { useStateValue } from './StateProvider';
 
+{/* Los props de estos productos son pasados en la Landing */}
+
 function ProductosLanding({ src, title, unidad, precio, id, qty, index }) {
     const [{ basket }, dispatch] = useStateValue();
 
