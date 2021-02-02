@@ -1,3 +1,7 @@
+You can check out this project hosted on firebase by coyping the following link:
+https://proyecto-verduras-e-commerce.web.app/
+_________________________________________________
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
