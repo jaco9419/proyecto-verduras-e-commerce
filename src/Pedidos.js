@@ -3,6 +3,8 @@ import './style/Pedidos.css';
 import MinusIcon from '@material-ui/icons/Remove';
 import PlusIcon from '@material-ui/icons/Add';
 import { useStateValue } from './StateProvider';
+import { Spring } from 'react-spring/renderprops';
+import { useTransition } from 'react-spring';
 
 function Pedidos() {
     const [{ basket, qty }, dispatch] = useStateValue();
@@ -56,6 +58,12 @@ function Pedidos() {
         });
     };
 
+    const transition = useTransition(basket, item => item.index, {
+        from: { opacity: 0, transform: "translateY(-10px)" },
+        enter: { opacity: 1, transform: "translateY(0)" },
+        leave: { opacity: 0, transform: "translateY(10px)" }
+      });
+
     return (
         <div className="pedidos__container">
             <h2 className="pedidos__message">Confirmá tu Pedido:</h2>
@@ -65,8 +73,15 @@ function Pedidos() {
                 {basket.length === 0 ? (
                     <p className="sin__pedido">No tiene ningún pedido aún</p>
                 ) : (
-                    basket.map((pedido) => (
-                        <div className="pedido" key={pedido.id}>
+                    basket.map((pedido, i) => (
+                        <Spring
+                            from={{ opacity: 0, transform: 'translateX(-50px)' }}
+                            to={{ opacity: 1, transform: 'translateX(0px)' }}
+                            config={{ delay: i * 150, duration: 400 }}
+                        >
+                        {props => (
+                            <div style={props}>
+                            <div className="pedido" key={i}>
                             <img
                                 className="pedido__img"
                                 src={pedido.src}
@@ -118,6 +133,10 @@ function Pedidos() {
                                 </div>
                             </div>
                         </div>
+                            </div>
+                            )}
+                        </Spring>
+                        
                     ))
                 )}
             </div>

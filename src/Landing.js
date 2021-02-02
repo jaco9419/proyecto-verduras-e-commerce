@@ -19,18 +19,21 @@ function Landing() {
             <SearchBar />
             <div className="products__container">
             {/* Se obtienen los productos para la landing en base a los productos en API o BD */}
-            {data.map((product, i) => (
-                <ProductosLanding 
-                    src={product.src}
-                    title={product.title}
-                    unidad={product.unidad}
-                    precio={product.precio}
-                    id={product.id}
-                    qty={qty}
-                    index={i}
-                    key={i}
-                />
-            ))}
+            
+          {data.map((product, i) => (
+          <ProductosLanding 
+                src={product.src}
+                title={product.title}
+                unidad={product.unidad}
+                precio={product.precio}
+                id={product.id}
+                qty={qty}
+                index={i}
+                key={i}
+            />
+        ))}
+        
+            
             </div>
 
             <footer className="footer">

@@ -27,14 +27,23 @@
     height: 100px;
 }
 
+.product__img__container {
+    width: 120px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .product__img {
     max-width: 120px;
+    max-height: 100%;
 }
 
 .product__line {
     width: 1px;
     height: 80%;
-    background-color: var(--clr-gray);
+    background-color: var(--clr-main-light);
 }
 
 .product__subcontainer {

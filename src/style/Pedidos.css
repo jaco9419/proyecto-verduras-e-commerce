@@ -1,10 +1,10 @@
 .pedidos__container {
     display: grid;
     grid-template:
-    'mensaje mensaje' 
-    'pedidos pedidos'
-    'formulario formulario'
-    'footer footer';
+        'mensaje mensaje'
+        'pedidos pedidos'
+        'formulario formulario'
+        'footer footer';
 }
 
 .pedidos__message {
@@ -26,7 +26,6 @@
 }
 
 .sin__pedido {
-    
     text-align: center;
     margin: auto;
 }
@@ -51,7 +50,7 @@
     width: 1px;
     height: 80%;
     margin: 0 1rem;
-    background-color: var(--clr-gray);
+    background-color: var(--clr-main-light);
 }
 
 .pedido__subcontainer {
@@ -148,7 +147,7 @@
 }
 
 .btn__quantity:focus {
-    outline:none;
+    outline: none;
 }
 
 .pedidos__form__container {
@@ -180,7 +179,7 @@
     border: var(--clr-main-light) 1px solid;
     background-color: var(--clr-main-light);
     outline: none;
-    transition: .2s;
+    transition: 0.2s;
     box-shadow: var(--bs-2);
     color: var(--clr-dark);
 }
@@ -240,21 +239,19 @@
     .pedido__btn__quantity__box {
         margin-right: 1rem;
     }
-  }
+}
 
 @media (min-width: 800px) {
-
     .pedidos__container {
         display: grid;
         grid-template:
-        'mensaje mensaje' 
-        'pedidos formulario'
-        'footer footer';
+            'mensaje mensaje'
+            'pedidos formulario'
+            'footer footer';
         padding: 2rem;
     }
 
     .pedidos__form__text {
         width: 80%;
     }
-
-  }
+}
