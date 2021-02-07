@@ -1,0 +1,61 @@
+.pedidos__form__container {
+    width: 100%;
+    grid-area: formulario;
+}
+
+.pedidos__form {
+    margin: 0.5rem 1rem;
+    background-color: var(--clr-light);
+    box-shadow: var(--bs);
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    align-items: center;
+    padding: 1rem;
+    border-radius: 15px;
+}
+
+.pedidos__form__message {
+    margin: 1rem;
+}
+
+.pedidos__form__text {
+    width: 90%;
+    margin: 1rem;
+    padding: 0.75rem;
+    border-radius: 15px;
+    border: var(--clr-main-light) 1px solid;
+    background-color: var(--clr-main-light);
+    outline: none;
+    transition: 0.2s;
+    box-shadow: var(--bs-2);
+    color: var(--clr-dark);
+}
+
+.pedidos__form__textarea {
+    min-height: 4rem;
+    max-height: 10rem;
+    resize: vertical;
+}
+
+.pedidos__form__text:focus {
+    border: var(--clr-main) 1px solid;
+}
+
+.pedidos__form__text::placeholder {
+    font-family: var(--ff-primary);
+    color: var(--clr-dark-gray);
+}
+
+.btn__confirmar {
+    height: 3.5rem;
+    width: 50%;
+    margin: 2rem;
+    background-color: var(--clr-main);
+    border: none;
+    color: var(--clr-light);
+    border-radius: 5px;
+    font-family: var(--ff-primary);
+    font-weight: var(--fw-bold);
+    transition: 0.3s;
+}
