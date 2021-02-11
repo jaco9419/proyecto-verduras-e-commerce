@@ -3,7 +3,7 @@ import { Spring } from 'react-spring/renderprops';
 import { useTransition } from 'react-spring';
 import MinusIcon from '@material-ui/icons/Remove';
 import PlusIcon from '@material-ui/icons/Add';
-import { useStateValue } from './StateProvider';
+import { useStateValue } from '../StateProvider';
 
 function ProductosPedidos({ pedido, src, title, unidad, precio, id, index }) {
 

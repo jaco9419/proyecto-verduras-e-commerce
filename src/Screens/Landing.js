@@ -1,11 +1,11 @@
 import React from 'react';
-import './style/Landing.css';
-import SearchBar from './SearchBar';
-import data from './API/data';
-import ProductosLanding from './ProductosLanding';
-import { useStateValue } from './StateProvider';
+import '../style/Landing.css';
+import SearchBar from '../Components/SearchBar';
+//import data from './API/data';
+import ProductosLanding from '../Components/ProductosLanding';
+import { useStateValue } from '../StateProvider';
 
-function Landing() {
+function Landing({ products }) {
 
     const [{ qty }] = useStateValue();
 
@@ -20,7 +20,7 @@ function Landing() {
             <div className="products__container">
             {/* Se obtienen los productos para la landing en base a los productos en API o BD */}
             
-          {data.map((product, i) => (
+          {products.map((product, i) => (
           <ProductosLanding 
                 src={product.src}
                 title={product.title}

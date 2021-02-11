@@ -1,13 +1,23 @@
 import data from './API/data';
 
+const str = window.location.pathname;
+const accountPath = str.match(/(?<=accounts\/+).*?(?=\/)/gs) || str.match(/(?<=accounts\/+).*/gs);
+console.log(accountPath);
+
 export const initialState = {
     basket: [],
     qty: Array(data.length).fill(1),
+    accountPath,
 };
 
 const reducer = (state, action) => {
     
     switch (action.type) {
+        // case 'PASS_DATA':
+        //     return {
+        //         ...state,
+        //         qty: Array(data.length).fill(1),
+        //     }
         case 'ADD_TO_BASKET': {
             const itemIndex = action.item.index;
             const newBasket = [...state.basket];
