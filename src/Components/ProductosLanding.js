@@ -1,7 +1,7 @@
 import React from 'react';
 import MinusIcon from '@material-ui/icons/Remove';
 import PlusIcon from '@material-ui/icons/Add';
-import { useStateValue } from './StateProvider';
+import { useStateValue } from '../StateProvider';
 import { Spring } from 'react-spring/renderprops';
 
 {/* Los props de estos productos son pasados en la Landing */}

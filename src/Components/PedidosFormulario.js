@@ -1,5 +1,5 @@
 import React from 'react';
-import './style/PedidosFormulario.css';
+import '../style/PedidosFormulario.css';
 
 function PedidosFormulario() {
     return (

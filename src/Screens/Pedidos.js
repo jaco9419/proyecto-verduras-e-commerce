@@ -1,11 +1,8 @@
 import React from 'react';
-import './style/Pedidos.css';
-
-import { useStateValue } from './StateProvider';
-
-
-import PedidosFormulario from './PedidosFormulario';
-import ProductosPedidos from './ProductosPedidos';
+import '../style/Pedidos.css';
+import { useStateValue } from '../StateProvider';
+import PedidosFormulario from '../Components/PedidosFormulario';
+import ProductosPedidos from '../Components/ProductosPedidos';
 
 function Pedidos() {
     const [{ basket, qty }, dispatch] = useStateValue();
