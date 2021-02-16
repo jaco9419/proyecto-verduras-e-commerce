@@ -8,17 +8,17 @@ import { useStateValue } from '../StateProvider';
 function Header({ loadData }) {
 
     const [{ basket, accountPath }] = useStateValue();
-    console.log(accountPath);
+    //console.log(accountPath);
 
     return (
         <header className="header">
-            <div className="header__figure">
+            <nav className="header__figure">
                 <div className="header__skewed"></div>
 
-                <Link to={`/accounts/${accountPath}`} className="header__link__icon" > 
+                <Link to={`/accounts/${accountPath}/products`} className="header__link__icon" > 
                     <HomeIcon className="home__icon" />
                 </Link>
-            </div>
+            </nav>
 
             <nav className="header__links">
                 <Link to={`/accounts/${accountPath}/pedidos`} className="header__link">

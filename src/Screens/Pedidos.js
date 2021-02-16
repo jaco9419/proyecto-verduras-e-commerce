@@ -5,7 +5,7 @@ import PedidosFormulario from '../Components/PedidosFormulario';
 import ProductosPedidos from '../Components/ProductosPedidos';
 
 function Pedidos() {
-    const [{ basket, qty }, dispatch] = useStateValue();
+    const [{ basket, qty }, ] = useStateValue();
     
     return (
         <div className="pedidos__container">
@@ -20,7 +20,7 @@ function Pedidos() {
                         <ProductosPedidos 
                             pedido = {pedido}
                             src = {pedido.src}
-                            title = {pedido.title}
+                            name = {pedido.name}
                             unidad = {pedido.unidad}
                             precio = {pedido.precio}
                             qty = {qty[pedido.index]}
