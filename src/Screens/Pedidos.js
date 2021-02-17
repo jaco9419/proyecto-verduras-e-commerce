@@ -3,12 +3,14 @@ import '../style/Pedidos.css';
 import { useStateValue } from '../StateProvider';
 import PedidosFormulario from '../Components/PedidosFormulario';
 import ProductosPedidos from '../Components/ProductosPedidos';
+import { Redirect } from 'react-router-dom';
 
 function Pedidos() {
-    const [{ basket, qty }, ] = useStateValue();
+    const [{ basket, qty, accountPath }, ] = useStateValue();
     
     return (
         <div className="pedidos__container">
+            {basket?.length === 0 && <Redirect to={`/accounts/${accountPath}/products`} />}
             <h2 className="pedidos__message">Confirmá tu Pedido:</h2>
 
             <div className="lista__pedidos__container">
@@ -25,7 +27,8 @@ function Pedidos() {
                             precio = {pedido.precio}
                             qty = {qty[pedido.index]}
                             id = {pedido.id}
-                            index = {i}
+                            index = {pedido.index}
+                            indexInBasket = {i}
                         />
                     ))
                 )}

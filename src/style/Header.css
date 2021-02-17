@@ -39,6 +39,11 @@
     transition: 0.3s !important;
 }
 
+.home__logo {
+    max-height: 3rem;
+    transition: 0.3s !important;
+}
+
 .header__links {
     display: flex;
     align-items: center;
@@ -103,4 +108,8 @@
 .header__pedidos:hover,
 .header__pedidos:hover > .cart__icon {
     color: var(--clr-hover) !important;
+}
+
+.home__logo:hover {
+    opacity: 0.7;
 }

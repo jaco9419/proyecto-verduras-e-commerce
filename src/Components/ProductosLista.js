@@ -3,8 +3,9 @@ import MinusIcon from '@material-ui/icons/Remove';
 import PlusIcon from '@material-ui/icons/Add';
 import { useStateValue } from '../StateProvider';
 import { Spring } from 'react-spring/renderprops';
+import '../style/ProductosLista.css';
 
-function ProductosLanding({ src, name, unidad, precio, id, qty, index }) {
+function ProductosLista({ src, name, unidad, precio, id, qty, index }) {
     const [{}, dispatch] = useStateValue();
 
     const addToBasket = () => {
@@ -50,21 +51,13 @@ function ProductosLanding({ src, name, unidad, precio, id, qty, index }) {
         >
             {(props) => (
                 <div style={props}>
-                    <div className="product" key={index}>
-                        <div className="product__img__container">
-                            <img
-                                className="product__img"
-                                src={src}
-                                alt={name}
-                            />
-                        </div>
+                    <div className={index % 2 === 0 ? "product__list even" : "product__list odd"} key={index}>
 
-                        <div className="product__line"></div>
-
-                        <div className="product__subcontainer">
-                            <div className="product__description">
-                                <p className="product__title">{name}</p>
-                                <p className="product__unit">
+                        <div className="product__subcontainer__list">
+                            <div className="product__description__list">
+                                <p className="product__title__list">{name}</p>
+                                
+                                <p className="product__unit__list">
                                     Unidad:{' '}
                                     {precio ? (
                                         <span>{unidad}</span>
@@ -72,23 +65,33 @@ function ProductosLanding({ src, name, unidad, precio, id, qty, index }) {
                                         <span>N/A</span>
                                     )}
                                 </p>
+                                
 
                                 {precio ? (
-                                    <p className="product__price">
-                                        <span className="product__price__extra">
+                                    <p className="product__price__list">
+                                        <span className="product__price__extra__list">
                                             $
                                         </span>
                                         {precio}
-                                        <span className="product__price__extra">
+                                        <span className="product__price__extra__list">
                                             {' '}
                                             por unidad
                                         </span>
                                     </p>
                                 ) : (
-                                    <div></div>
+                                    <p className="product__price__list">
+                                        <span className="product__price__extra__list">
+                                            $
+                                        </span>
+                                        400
+                                        <span className="product__price__extra__list">
+                                            {' '}
+                                            por unidad
+                                        </span>
+                                    </p>
                                 )}
                             </div>
-                            <div className="product__buttons">
+                            <div className="product__buttons__list">
                                 <div className="btn__quantity__box">
                                     <button
                                         onClick={decreaseQty}
@@ -121,4 +124,4 @@ function ProductosLanding({ src, name, unidad, precio, id, qty, index }) {
     );
 }
 
-export default ProductosLanding;
+export default ProductosLista;

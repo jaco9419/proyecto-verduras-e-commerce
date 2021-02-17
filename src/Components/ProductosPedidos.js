@@ -1,27 +1,11 @@
 import React from 'react';
 import { Spring } from 'react-spring/renderprops';
-import { useTransition } from 'react-spring';
 import MinusIcon from '@material-ui/icons/Remove';
 import PlusIcon from '@material-ui/icons/Add';
 import { useStateValue } from '../StateProvider';
 
-function ProductosPedidos({ pedido, src, name, unidad, precio, id, index }) {
-    const [{ basket, qty }, dispatch] = useStateValue();
-
-    const addToBasket = (pedido) => {
-        dispatch({
-            type: 'ADD_TO_BASKET',
-            item: {
-                src,
-                name,
-                unidad,
-                precio,
-                id,
-                qty,
-                index,
-            },
-        });
-    };
+function ProductosPedidos({ pedido, src, name, unidad, precio, id, index, indexInBasket }) {
+    const [{ qty }, dispatch] = useStateValue();
 
     const increaseQty = (pedido) => {
         dispatch({
@@ -57,11 +41,11 @@ function ProductosPedidos({ pedido, src, name, unidad, precio, id, index }) {
             <Spring
                 from={{ opacity: 0, transform: 'translateX(-50px)' }}
                 to={{ opacity: 1, transform: 'translateX(0px)' }}
-                config={{ delay: index * 150, duration: 400 }}
+                config={{ delay: indexInBasket * 150, duration: 400 }}
             >
                 {(props) => (
                     <div style={props}>
-                        <div className="pedido" key={index}>
+                        <div className="pedido" key={indexInBasket}>
                             <img className="pedido__img" src={src} alt={name} />
                             <div className="pedido__line"></div>
 
@@ -73,7 +57,7 @@ function ProductosPedidos({ pedido, src, name, unidad, precio, id, index }) {
                                         {precio ? (
                                             <span>{unidad}</span>
                                         ) : (
-                                            <span>sin especificar</span>
+                                            <span>N/A</span>
                                         )}
                                     </p>
 

@@ -7,8 +7,9 @@ import { useStateValue } from '../StateProvider';
 
 function Header({ loadData }) {
 
-    const [{ basket, accountPath }] = useStateValue();
+    const [{ basket, accountPath, accountInfo }] = useStateValue();
     //console.log(accountPath);
+    console.log(accountInfo);
 
     return (
         <header className="header">
@@ -16,7 +17,12 @@ function Header({ loadData }) {
                 <div className="header__skewed"></div>
 
                 <Link to={`/accounts/${accountPath}/products`} className="header__link__icon" > 
-                    <HomeIcon className="home__icon" />
+                    {accountInfo.logo ? (
+                        <img className="home__logo" src={accountInfo.logo} alt="logo"/>
+                    ) : (
+                        <HomeIcon className="home__icon" />
+                    )}
+                    
                 </Link>
             </nav>
 

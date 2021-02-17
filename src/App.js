@@ -8,34 +8,22 @@ import Pedidos from './Screens/Pedidos';
 
 function App() {
 
-    const API_URL = `https://us-central1-duleri-69cbb.cloudfunctions.net/api_quote_v2${window.location.pathname}`;
-
-    const [{}, dispatch] = useStateValue();
+    const [{accountPath}, dispatch] = useStateValue();
 
     useEffect(() => {
-        loadProducts();
+        loadUserInfo();
     }, []);
 
     const loadUserInfo = async () => {
+        const API_URL = `https://us-central1-duleri-69cbb.cloudfunctions.net/api_quote_v2/accounts/${accountPath}`;
         const response = await fetch(API_URL);
         const data = await response.json();
+        console.log(data)
 
         dispatch({
-            type: 'PASS_USER_INFO',
+            type: 'LOAD_USER_INFO',
             item: {
-                data: data.result
-            },
-        });
-    }
-
-    const loadProducts = async () => {
-        const response = await fetch(API_URL);
-        const data = await response.json();
-
-        dispatch({
-            type: 'PASS_PRODUCTS',
-            item: {
-                data: data.result
+                data
             },
         });
     }
@@ -51,6 +39,9 @@ function App() {
                     <Route path="/accounts/:accountPath/products">
                         <Header />
                         <Landing />
+                    </Route>
+                    <Route path="/accounts/:accountPath/">
+                        <Redirect to={`/accounts/${accountPath}/products`} />
                     </Route>
                 </Switch>
             </div>

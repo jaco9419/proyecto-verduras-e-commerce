@@ -7,24 +7,26 @@ export const initialState = {
     basket: [],
     qty: [],
     accountPath,
-    accountInfo: {}
+    accountInfo: {},
+    productsViewList: false 
 };
 
 const reducer = (state, action) => {
     
     switch (action.type) {
-        case 'PASS_USER_INFO':
-            console.log(action.accountInfo);
+        case 'LOAD_USER_INFO':
+            
             return {
                 ...state,
-                accountInfo: action.accountInfo
+                accountInfo: action.item.data
             }
-        case 'PASS_PRODUCTS':
+        case 'LOAD_PRODUCTS':
             const dataLength = action.item.data ? action.item.data.length : 1;
+            console.log(state.qty);
             return {
                 ...state,
                 products: action.item.data,
-                qty: Array(dataLength).fill(1),
+                qty: state.qty.length > 0 ? [...state.qty] : Array(dataLength).fill(5),
             }
         case 'ADD_TO_BASKET': {
             const itemIndex = action.item.index;
@@ -67,6 +69,7 @@ const reducer = (state, action) => {
             newBasket.forEach(item => {
                 item.qty = newQty[qtyIndex]
             })
+            console.log(state.qty);
             return {
                 ...state,
                 basket: [...newBasket],
@@ -79,14 +82,17 @@ const reducer = (state, action) => {
             if (newQty[qtyIndex] > 1) {
                 newQty[qtyIndex]--;
             }
+            console.log(state.qty);
             return {
                 ...state,
                 qty: [...newQty],
             };
         }
-        case 'REMOVE_FROM_BASKET':
-            // Logic
-            return { state };
+        case 'TOGGLE_VIEW':
+            return {
+                ...state,
+                productsViewList: !state.productsViewList
+            }
         default:
             return state;
     }
