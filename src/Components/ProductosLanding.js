@@ -3,9 +3,19 @@ import MinusIcon from '@material-ui/icons/Remove';
 import PlusIcon from '@material-ui/icons/Add';
 import { useStateValue } from '../StateProvider';
 import { Spring } from 'react-spring/renderprops';
+import { Link } from 'react-router-dom';
 
-function ProductosLanding({ src, name, unidad, precio, id, qty, index }) {
-    const [, dispatch] = useStateValue();
+function ProductosLanding({
+    src,
+    name,
+    unidad,
+    price,
+    id,
+    qty,
+    index,
+    description,
+}) {
+    const [{ accountPath }, dispatch] = useStateValue();
     const addToBasket = () => {
         dispatch({
             type: 'ADD_TO_BASKET',
@@ -13,10 +23,11 @@ function ProductosLanding({ src, name, unidad, precio, id, qty, index }) {
                 src,
                 name,
                 unidad,
-                precio,
+                price,
                 id,
                 qty: qty[index],
                 index,
+                description,
             },
         });
     };
@@ -41,6 +52,22 @@ function ProductosLanding({ src, name, unidad, precio, id, qty, index }) {
         });
     };
 
+    const setCurrentProduct = () => {
+        dispatch({
+            type: 'SET_CURRENT_PRODUCT',
+            item: {
+                src,
+                name,
+                unidad,
+                price,
+                id,
+                qty: qty[index],
+                index,
+                description,
+            },
+        });
+    };
+
     return (
         <Spring
             from={{ opacity: 0, transform: 'translateX(-50px)' }}
@@ -51,33 +78,47 @@ function ProductosLanding({ src, name, unidad, precio, id, qty, index }) {
                 <div style={props}>
                     <div className="product" key={index}>
                         <div className="product__img__container">
-                            <img
-                                className="product__img"
-                                src={src}
-                                alt={name}
-                            />
+                            <Link
+                                to={`/accounts/${accountPath}/products/${name}`}
+                            >
+                                <img
+                                    onClick={setCurrentProduct}
+                                    className="product__img"
+                                    src={src}
+                                    alt={name}
+                                />
+                            </Link>
                         </div>
 
                         <div className="product__line"></div>
 
                         <div className="product__subcontainer">
                             <div className="product__description">
-                                <p className="product__title">{name}</p>
+                                <Link
+                                    to={`/accounts/${accountPath}/products/${name}`}
+                                >
+                                    <p
+                                        onClick={setCurrentProduct}
+                                        className="product__title"
+                                    >
+                                        {name}
+                                    </p>
+                                </Link>
                                 <p className="product__unit">
                                     Unidad:{' '}
-                                    {precio ? (
+                                    {unidad ? (
                                         <span>{unidad}</span>
                                     ) : (
                                         <span>N/A</span>
                                     )}
                                 </p>
 
-                                {precio ? (
+                                {price ? (
                                     <p className="product__price">
                                         <span className="product__price__extra">
                                             $
                                         </span>
-                                        {precio}
+                                        {price}
                                         <span className="product__price__extra">
                                             {' '}
                                             por unidad

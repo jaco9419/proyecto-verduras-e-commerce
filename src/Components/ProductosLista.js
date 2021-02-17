@@ -4,9 +4,19 @@ import PlusIcon from '@material-ui/icons/Add';
 import { useStateValue } from '../StateProvider';
 import { Spring } from 'react-spring/renderprops';
 import '../style/ProductosLista.css';
+import { Link } from 'react-router-dom';
 
-function ProductosLista({ src, name, unidad, precio, id, qty, index }) {
-    const [, dispatch] = useStateValue();
+function ProductosLista({
+    src,
+    name,
+    unidad,
+    price,
+    id,
+    qty,
+    index,
+    description,
+}) {
+    const [{ accountPath }, dispatch] = useStateValue();
     const addToBasket = () => {
         dispatch({
             type: 'ADD_TO_BASKET',
@@ -14,10 +24,11 @@ function ProductosLista({ src, name, unidad, precio, id, qty, index }) {
                 src,
                 name,
                 unidad,
-                precio,
+                price,
                 id,
                 qty: qty[index],
                 index,
+                description,
             },
         });
     };
@@ -42,6 +53,22 @@ function ProductosLista({ src, name, unidad, precio, id, qty, index }) {
         });
     };
 
+    const setCurrentProduct = () => {
+        dispatch({
+            type: 'SET_CURRENT_PRODUCT',
+            item: {
+                src,
+                name,
+                unidad,
+                price,
+                id,
+                qty: qty[index],
+                index,
+                description,
+            },
+        });
+    };
+
     return (
         <Spring
             from={{ opacity: 0, transform: 'translateX(-50px)' }}
@@ -50,44 +77,49 @@ function ProductosLista({ src, name, unidad, precio, id, qty, index }) {
         >
             {(props) => (
                 <div style={props}>
-                    <div className={index % 2 === 0 ? "product__list even" : "product__list odd"} key={index}>
-
+                    <div
+                        className={
+                            index % 2 === 0
+                                ? 'product__list even'
+                                : 'product__list odd'
+                        }
+                        key={index}
+                    >
                         <div className="product__subcontainer__list">
                             <div className="product__description__list">
-                                <p className="product__title__list">{name}</p>
-                                
+                                <Link
+                                    to={`/accounts/${accountPath}/products/${name}`}
+                                >
+                                    <p
+                                        onClick={setCurrentProduct}
+                                        className="product__title__list"
+                                    >
+                                        {name}
+                                    </p>
+                                </Link>
+
                                 <p className="product__unit__list">
                                     Unidad:{' '}
-                                    {precio ? (
+                                    {unidad ? (
                                         <span>{unidad}</span>
                                     ) : (
                                         <span>N/A</span>
                                     )}
                                 </p>
-                                
 
-                                {precio ? (
+                                {price ? (
                                     <p className="product__price__list">
                                         <span className="product__price__extra__list">
                                             $
                                         </span>
-                                        {precio}
+                                        {price}
                                         <span className="product__price__extra__list">
                                             {' '}
                                             por unidad
                                         </span>
                                     </p>
                                 ) : (
-                                    <p className="product__price__list">
-                                        <span className="product__price__extra__list">
-                                            $
-                                        </span>
-                                        400
-                                        <span className="product__price__extra__list">
-                                            {' '}
-                                            por unidad
-                                        </span>
-                                    </p>
+                                    <div></div>
                                 )}
                             </div>
                             <div className="product__buttons__list">

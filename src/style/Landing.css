@@ -110,6 +110,8 @@
 
 .product__title {
     font-weight: var(--fw-semibold);
+    color: var(--clr-dark);
+    text-decoration: underline;
 }
 
 .product__unit {

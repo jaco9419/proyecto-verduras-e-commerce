@@ -24,12 +24,13 @@ function Pedidos() {
                             src = {pedido.src}
                             name = {pedido.name}
                             unidad = {pedido.unidad}
-                            precio = {pedido.precio}
+                            price = {pedido.price}
                             qty = {qty[pedido.index]}
                             id = {pedido.id}
                             index = {pedido.index}
                             indexInBasket = {i}
                             key={i}
+                            description={pedido.description}
                         />
                     ))
                 )}

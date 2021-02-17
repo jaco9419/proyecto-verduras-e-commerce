@@ -44,6 +44,8 @@
 
 .product__title__list {
     font-weight: var(--fw-semibold);
+    color: var(--clr-dark);
+    text-decoration: underline;
 }
 
 .product__price__list {

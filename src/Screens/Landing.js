@@ -73,22 +73,24 @@ function Landing() {
                                 src={product.src}
                                 name={product.name}
                                 unidad={product.unidad}
-                                precio={product.precio}
+                                price={product.price}
                                 id={product.id}
                                 qty={qty}
                                 index={index}
                                 key={index}
+                                description={product.description}
                             />
                         ) : (
                             <ProductosLista
                                 src={product.src}
                                 name={product.name}
                                 unidad={product.unidad}
-                                precio={product.precio}
+                                price={product.price}
                                 id={product.id}
                                 qty={qty}
                                 index={index}
                                 key={index}
+                                description={product.description}
                             />
                         )
                     )

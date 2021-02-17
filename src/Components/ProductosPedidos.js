@@ -4,7 +4,7 @@ import MinusIcon from '@material-ui/icons/Remove';
 import PlusIcon from '@material-ui/icons/Add';
 import { useStateValue } from '../StateProvider';
 
-function ProductosPedidos({ pedido, src, name, unidad, precio, id, index, indexInBasket }) {
+function ProductosPedidos({ pedido, src, name, unidad, price, id, index, indexInBasket, description }) {
     const [{ qty }, dispatch] = useStateValue();
 
     const increaseQty = (pedido) => {
@@ -54,19 +54,19 @@ function ProductosPedidos({ pedido, src, name, unidad, precio, id, index, indexI
                                     <p className="pedido__title">{name}</p>
                                     <p className="pedido__unit">
                                         Unidad:{' '}
-                                        {precio ? (
+                                        {unidad ? (
                                             <span>{unidad}</span>
                                         ) : (
                                             <span>N/A</span>
                                         )}
                                     </p>
 
-                                    {precio ? (
+                                    {price ? (
                                         <p className="pedido__price">
                                             <span className="pedido__price__extra">
                                                 $
                                             </span>
-                                            {precio}
+                                            {price}
                                             <span className="product__price__extra">
                                                 {' '}
                                                 por unidad

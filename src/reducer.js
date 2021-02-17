@@ -2,7 +2,6 @@ const str = window.location.pathname;
 const accountPath =
     str.match(/(?<=accounts\/+).*?(?=\/)/gs) ||
     str.match(/(?<=accounts\/+).*/gs);
-//console.log(accountPath);
 
 export const initialState = {
     products: [],
@@ -12,6 +11,7 @@ export const initialState = {
     accountInfo: {},
     productsViewList: false,
     custumerInfo: {},
+    currentProduct: []
 };
 
 const reducer = (state, action) => {
@@ -180,6 +180,11 @@ const reducer = (state, action) => {
                 default:
                     return state;
             }
+                case 'SET_CURRENT_PRODUCT':
+                    return {
+                        ...state,
+                        currentProduct: action.item
+                    }
         default:
             return state;
     }

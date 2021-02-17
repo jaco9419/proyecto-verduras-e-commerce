@@ -1,14 +1,19 @@
 import React, { useEffect } from 'react';
-import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Redirect,
+} from 'react-router-dom';
 import { useStateValue } from './StateProvider';
 import './App.css';
 import Header from './Components/Header';
 import Landing from './Screens/Landing';
 import Pedidos from './Screens/Pedidos';
+import ProductoDetalle from './Screens/ProductoDetalle';
 
 function App() {
-
-    const [{accountPath}, dispatch] = useStateValue();
+    const [{ accountPath }, dispatch] = useStateValue();
 
     useEffect(() => {
         loadUserInfo();
@@ -22,15 +27,19 @@ function App() {
         dispatch({
             type: 'LOAD_USER_INFO',
             item: {
-                data
+                data,
             },
         });
-    }
+    };
 
     return (
         <Router>
             <div className="App">
                 <Switch>
+                    <Route path="/accounts/:accountPath/products/:product">
+                        <Header />
+                        <ProductoDetalle />
+                    </Route>
                     <Route path="/accounts/:accountPath/pedidos">
                         <Header />
                         <Pedidos />
