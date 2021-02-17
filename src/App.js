@@ -18,7 +18,6 @@ function App() {
         const API_URL = `https://us-central1-duleri-69cbb.cloudfunctions.net/api_quote_v2/accounts/${accountPath}`;
         const response = await fetch(API_URL);
         const data = await response.json();
-        console.log(data)
 
         dispatch({
             type: 'LOAD_USER_INFO',

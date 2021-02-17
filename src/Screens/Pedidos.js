@@ -29,6 +29,7 @@ function Pedidos() {
                             id = {pedido.id}
                             index = {pedido.index}
                             indexInBasket = {i}
+                            key={i}
                         />
                     ))
                 )}

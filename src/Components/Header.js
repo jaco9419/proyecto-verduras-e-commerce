@@ -8,8 +8,6 @@ import { useStateValue } from '../StateProvider';
 function Header({ loadData }) {
 
     const [{ basket, accountPath, accountInfo }] = useStateValue();
-    //console.log(accountPath);
-    console.log(accountInfo);
 
     return (
         <header className="header">

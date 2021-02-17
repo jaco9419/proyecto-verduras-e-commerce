@@ -5,8 +5,7 @@ import { useStateValue } from '../StateProvider';
 import { Spring } from 'react-spring/renderprops';
 
 function ProductosLanding({ src, name, unidad, precio, id, qty, index }) {
-    const [{}, dispatch] = useStateValue();
-
+    const [, dispatch] = useStateValue();
     const addToBasket = () => {
         dispatch({
             type: 'ADD_TO_BASKET',
