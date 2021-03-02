@@ -93,6 +93,13 @@
     max-height: 100%;
 }
 
+.product__image__icon {
+    width: 100% !important;
+    height: 100% !important;
+    color: var(--clr-main-light) !important;
+    text-align: center;
+}
+
 .product__line {
     width: 1px;
     height: 80%;
@@ -112,6 +119,10 @@
     font-weight: var(--fw-semibold);
     color: var(--clr-dark);
     text-decoration: underline;
+    text-underline-position: under;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .product__unit {

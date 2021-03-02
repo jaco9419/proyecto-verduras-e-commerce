@@ -8,22 +8,21 @@ import BoxViewIcon from '@material-ui/icons/Apps';
 import ProductosLista from '../Components/ProductosLista';
 
 function Landing() {
-    const [{ products, qty, productsViewList }, dispatch] = useStateValue();
-
+    const [{ products, qty, productsViewList, accountName }, dispatch] = useStateValue();
+    
     useEffect(() => {
-        loadProducts();
-    }, []);
+        loadUserInfo();
+    }, [accountName]);
 
-    const loadProducts = async () => {
-        const API_URL = `https://us-central1-duleri-69cbb.cloudfunctions.net/api_quote_v2${window.location.pathname}`;
+    const loadUserInfo = async () => {
+        const API_URL = `https://us-central1-duleri-69cbb.cloudfunctions.net/api_quote_v2/accounts/firenze`;
         const response = await fetch(API_URL);
         const data = await response.json();
 
         dispatch({
-            type: 'LOAD_PRODUCTS',
+            type: 'LOAD_USER_INFO',
             item: {
-                data: data.result,
-                qty: qty[products.index],
+                data,
             },
         });
     };
@@ -66,7 +65,7 @@ function Landing() {
                         : 'products__container__list'
                 }
             >
-                {products ? (
+                {products[0]?.name || products[0]?.src ? (
                     products.map((product, index) =>
                         productsViewList === false ? (
                             <ProductosLanding
@@ -97,8 +96,7 @@ function Landing() {
                 ) : (
                     <div className="landing__message__error">
                         <p>
-                            Ha ocurrido un error. Por favor, refrescar la
-                            página.
+                            Cargando productos...
                         </p>
                     </div>
                 )}

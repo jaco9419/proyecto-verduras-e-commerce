@@ -3,8 +3,19 @@ import { Spring } from 'react-spring/renderprops';
 import MinusIcon from '@material-ui/icons/Remove';
 import PlusIcon from '@material-ui/icons/Add';
 import { useStateValue } from '../StateProvider';
+import ImageIcon from '@material-ui/icons/Image';
 
-function ProductosPedidos({ pedido, src, name, unidad, price, id, index, indexInBasket, description }) {
+function ProductosPedidos({
+    pedido,
+    src,
+    name,
+    unidad,
+    price,
+    id,
+    index,
+    indexInBasket,
+    description,
+}) {
     const [{ qty }, dispatch] = useStateValue();
 
     const increaseQty = (pedido) => {
@@ -46,7 +57,16 @@ function ProductosPedidos({ pedido, src, name, unidad, price, id, index, indexIn
                 {(props) => (
                     <div style={props}>
                         <div className="pedido" key={indexInBasket}>
-                            <img className="pedido__img" src={src} alt={name} />
+                            {src ? (
+                                <img
+                                    className="pedido__img"
+                                    src={src}
+                                    alt={name}
+                                />
+                            ) : (
+                                <ImageIcon className="pedido__image__icon" />
+                            )}
+
                             <div className="pedido__line"></div>
 
                             <div className="pedido__subcontainer">

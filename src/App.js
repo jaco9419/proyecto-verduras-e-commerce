@@ -13,24 +13,42 @@ import Pedidos from './Screens/Pedidos';
 import ProductoDetalle from './Screens/ProductoDetalle';
 
 function App() {
-    const [{ accountPath }, dispatch] = useStateValue();
+    const [{ accountPath, accountName, qty, products }, dispatch] = useStateValue();
 
     useEffect(() => {
-        loadUserInfo();
+        loadUserName();
     }, []);
 
-    const loadUserInfo = async () => {
-        const API_URL = `https://us-central1-duleri-69cbb.cloudfunctions.net/api_quote_v2/accounts/${accountPath}`;
+    const loadUserName = async () => {
+        const API_URL = `https://us-central1-duleri-69cbb.cloudfunctions.net/api_quote_v2/quoteWebsite?quoteWebsite=https%3A%2F%2Fproyecto-verduras-e-commerce.web.app%2Faccounts%2F${accountPath}`;
         const response = await fetch(API_URL);
         const data = await response.json();
 
         dispatch({
-            type: 'LOAD_USER_INFO',
+            type: 'LOAD_USER_NAME',
             item: {
                 data,
             },
         });
     };
+
+    useEffect(() => {
+        loadProducts();
+}, [accountName]);
+
+const loadProducts = async () => {
+    const API_URL = `https://us-central1-duleri-69cbb.cloudfunctions.net/api_quote_v2/accounts/${accountName}/products`;
+    const response = await fetch(API_URL);
+    const data = await response.json();
+
+    dispatch({
+        type: 'LOAD_PRODUCTS',
+        item: {
+            data,
+            qty: qty[products.index],
+        },
+    });
+};
 
     return (
         <Router>

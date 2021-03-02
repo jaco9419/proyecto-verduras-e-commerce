@@ -4,6 +4,7 @@ import PlusIcon from '@material-ui/icons/Add';
 import { useStateValue } from '../StateProvider';
 import { Spring } from 'react-spring/renderprops';
 import { Link } from 'react-router-dom';
+import ImageIcon from '@material-ui/icons/Image';
 
 function ProductosLanding({
     src,
@@ -81,12 +82,19 @@ function ProductosLanding({
                             <Link
                                 to={`/accounts/${accountPath}/products/${name}`}
                             >
-                                <img
-                                    onClick={setCurrentProduct}
-                                    className="product__img"
-                                    src={src}
-                                    alt={name}
-                                />
+                                {src ? (
+                                    <img
+                                        onClick={setCurrentProduct}
+                                        className="product__img"
+                                        src={src}
+                                        alt={name}
+                                    />
+                                ) : (
+                                    <ImageIcon
+                                        onClick={setCurrentProduct}
+                                        className="product__image__icon"
+                                    />
+                                )}
                             </Link>
                         </div>
 

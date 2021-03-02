@@ -3,7 +3,7 @@ import { useStateValue } from '../StateProvider';
 import '../style/PedidosFormulario.css';
 
 function PedidosFormulario() {
-    const [{ custumerInfo, accountPath}, dispatch] = useStateValue();
+    const [{ custumerInfo, accountName }, dispatch] = useStateValue();
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -23,15 +23,15 @@ function PedidosFormulario() {
     };
 
     const loadUserInfo = async () => {
-        const API_URL = `https://us-central1-duleri-69cbb.cloudfunctions.net/api_quote_v2/accounts/${accountPath}/quotes`;
-        console.log(API_URL)
+        const API_URL = `https://us-central1-duleri-69cbb.cloudfunctions.net/api_quote_v2/accounts/${accountName}/quotes`;
+        console.log(API_URL);
         const response = await fetch(API_URL, {
             method: 'post',
             headers: {
-                'Accept': 'application/json',
+                Accept: 'application/json',
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(custumerInfo)
+            body: JSON.stringify(custumerInfo),
         });
         console.log(response);
     };

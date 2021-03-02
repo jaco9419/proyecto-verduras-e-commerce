@@ -7,15 +7,22 @@ export const initialState = {
     products: [],
     basket: [],
     qty: [],
+    accountName: {},
     accountPath,
     accountInfo: {},
     productsViewList: false,
     custumerInfo: {},
-    currentProduct: []
+    currentProduct: [],
+    searchWord: '',
 };
 
 const reducer = (state, action) => {
     switch (action.type) {
+        case 'LOAD_USER_NAME':
+            return {
+                ...state,
+                accountName: action.item.data.accountName,
+            };
         case 'LOAD_USER_INFO':
             return {
                 ...state,
@@ -27,9 +34,9 @@ const reducer = (state, action) => {
                 ...state,
                 products: action.item.data,
                 qty:
-                    state.qty.length > 0
+                    state.qty.length > 1
                         ? [...state.qty]
-                        : Array(dataLength).fill(5),
+                        : Array(dataLength).fill(1),
             };
         case 'ADD_TO_BASKET': {
             const itemIndex = action.item.index;
@@ -180,11 +187,31 @@ const reducer = (state, action) => {
                 default:
                     return state;
             }
-                case 'SET_CURRENT_PRODUCT':
-                    return {
-                        ...state,
-                        currentProduct: action.item
-                    }
+        case 'SET_CURRENT_PRODUCT':
+            return {
+                ...state,
+                currentProduct: action.item,
+            };
+        case 'SEARCH_PRODUCT':
+            return {
+                ...state,
+                searchWord: action.item.value,
+            };
+        case 'LOAD_SEARCHED_PRODUCTS':
+            const dataLengthy = action.item.data ? action.item.data.length : 1;
+            const filteredProducts = action.item.data.filter((product) =>
+                product.name?.includes(state.searchWord) ||
+                product.unidad?.includes(state.searchWord) ||
+                product.description?.includes(state.searchWord)
+            );
+            return {
+                ...state,
+                products: filteredProducts,
+                qty:
+                    state.qty.length > 1
+                        ? [...state.qty]
+                        : Array(dataLengthy).fill(1),
+            };
         default:
             return state;
     }

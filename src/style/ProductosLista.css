@@ -38,14 +38,17 @@
 
 .product__description__list {
     width: 50%;
+    margin-right: .5rem;
 }
-
-
 
 .product__title__list {
     font-weight: var(--fw-semibold);
     color: var(--clr-dark);
     text-decoration: underline;
+    text-underline-position: under;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .product__price__list {
@@ -158,15 +161,16 @@
     }
 }
 
-@media (min-width: 800px) {
+@media (min-width: 900px) {
     .product__list {
         padding: .7rem 4rem;
         height: 40px;
     }
 
     .product__description__list {
+        width: 80%;
         display: grid;
-        grid-template-columns: minmax(100px, 200px) minmax(120px, 200px) minmax(150px, 250px);
+        grid-template-columns: 45% 25% 30%;
         align-items: center;
         grid-gap: .5rem;
     }
