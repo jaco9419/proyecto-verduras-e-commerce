@@ -7,9 +7,9 @@ import '../style/ProductosLista.css';
 import { Link } from 'react-router-dom';
 
 function ProductosLista({
-    src,
+    image,
     name,
-    unidad,
+    unit,
     price,
     id,
     qty,
@@ -21,9 +21,9 @@ function ProductosLista({
         dispatch({
             type: 'ADD_TO_BASKET',
             item: {
-                src,
+                image,
                 name,
-                unidad,
+                unit,
                 price,
                 id,
                 qty: qty[index],
@@ -57,9 +57,9 @@ function ProductosLista({
         dispatch({
             type: 'SET_CURRENT_PRODUCT',
             item: {
-                src,
+                image,
                 name,
-                unidad,
+                unit,
                 price,
                 id,
                 qty: qty[index],
@@ -100,8 +100,8 @@ function ProductosLista({
 
                                 <p className="product__unit__list">
                                     Unidad:{' '}
-                                    {unidad ? (
-                                        <span>{unidad}</span>
+                                    {unit ? (
+                                        <span>{unit}</span>
                                     ) : (
                                         <span>N/A</span>
                                     )}

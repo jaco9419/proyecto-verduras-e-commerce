@@ -7,24 +7,42 @@ import ListViewIcon from '@material-ui/icons/ViewList';
 import BoxViewIcon from '@material-ui/icons/Apps';
 import ProductosLista from '../Components/ProductosLista';
 
+const { REACT_APP_API_URL } = process.env;
+
 function Landing() {
-    const [{ products, qty, productsViewList, accountName }, dispatch] = useStateValue();
-    
+    const [
+        { products, qty, productsViewList, accountName, counter },
+        dispatch,
+    ] = useStateValue();
+
     useEffect(() => {
         loadUserInfo();
     }, [accountName]);
 
     const loadUserInfo = async () => {
-        const API_URL = `https://us-central1-duleri-69cbb.cloudfunctions.net/api_quote_v2/accounts/firenze`;
+        const API_URL = `${REACT_APP_API_URL}/accounts/${accountName}`;
         const response = await fetch(API_URL);
         const data = await response.json();
 
         dispatch({
-            type: 'LOAD_USER_INFO',
+            type: 'LOAD_ACCOUNT_INFO',
             item: {
                 data,
             },
         });
+    };
+
+    useEffect(() => {
+        decreaseCounter();
+    }, []);
+
+    const decreaseCounter = () => {
+        setTimeout(() => {
+            dispatch({
+                type: 'DECREASE_COUNTER',
+            });
+            decreaseCounter();
+        }, 1000);
     };
 
     const toggleProductsView = () => {
@@ -65,13 +83,13 @@ function Landing() {
                         : 'products__container__list'
                 }
             >
-                {products[0]?.name || products[0]?.src ? (
+                {products[0]?.name || products[0]?.image ? (
                     products.map((product, index) =>
                         productsViewList === false ? (
                             <ProductosLanding
-                                src={product.src}
+                                image={product.image}
                                 name={product.name}
-                                unidad={product.unidad}
+                                unit={product.unit}
                                 price={product.price}
                                 id={product.id}
                                 qty={qty}
@@ -81,9 +99,9 @@ function Landing() {
                             />
                         ) : (
                             <ProductosLista
-                                src={product.src}
+                                image={product.image}
                                 name={product.name}
-                                unidad={product.unidad}
+                                unit={product.unit}
                                 price={product.price}
                                 id={product.id}
                                 qty={qty}
@@ -93,10 +111,15 @@ function Landing() {
                             />
                         )
                     )
+                ) : counter > 0 ? (
+                    <div className="landing__message__error">
+                        <p>Cargando productos...</p>
+                    </div>
                 ) : (
                     <div className="landing__message__error">
                         <p>
-                            Cargando productos...
+                            No hay productos en esta cuenta. Por favor,
+                            verifique la página e intente de nuevo.
                         </p>
                     </div>
                 )}

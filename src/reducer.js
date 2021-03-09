@@ -1,7 +1,18 @@
-const str = window.location.pathname;
+const path = window.location.pathname;
+
 const accountPath =
-    str.match(/(?<=accounts\/+).*?(?=\/)/gs) ||
-    str.match(/(?<=accounts\/+).*/gs);
+    path.match(/(?<=accounts\/+).*?(?=\/)/gs) ||
+    path.match(/(?<=accounts\/+).*/gs);
+
+const href = window.location.href;
+
+const newHref = href
+    .replace('/products', '')
+    .replace('/products/', '')
+    .replace('/pedido', '')
+    .replace('/pedido/', '');
+const origin = newHref.replaceAll(':', '%3A').replaceAll('/', '%2F');
+console.log(origin);
 
 export const initialState = {
     products: [],
@@ -10,20 +21,22 @@ export const initialState = {
     accountName: {},
     accountPath,
     accountInfo: {},
+    origin,
     productsViewList: false,
     custumerInfo: {},
     currentProduct: [],
     searchWord: '',
+    counter: 7,
 };
 
 const reducer = (state, action) => {
     switch (action.type) {
-        case 'LOAD_USER_NAME':
+        case 'LOAD_ACCOUNT_NAME':
             return {
                 ...state,
                 accountName: action.item.data.accountName,
             };
-        case 'LOAD_USER_INFO':
+        case 'LOAD_ACCOUNT_INFO':
             return {
                 ...state,
                 accountInfo: action.item.data,
@@ -199,10 +212,11 @@ const reducer = (state, action) => {
             };
         case 'LOAD_SEARCHED_PRODUCTS':
             const dataLengthy = action.item.data ? action.item.data.length : 1;
-            const filteredProducts = action.item.data.filter((product) =>
-                product.name?.includes(state.searchWord) ||
-                product.unidad?.includes(state.searchWord) ||
-                product.description?.includes(state.searchWord)
+            const filteredProducts = action.item.data.filter(
+                (product) =>
+                    product.name?.includes(state.searchWord) ||
+                    product.unit?.includes(state.searchWord) ||
+                    product.description?.includes(state.searchWord)
             );
             return {
                 ...state,
@@ -211,6 +225,15 @@ const reducer = (state, action) => {
                     state.qty.length > 1
                         ? [...state.qty]
                         : Array(dataLengthy).fill(1),
+            };
+        case 'DECREASE_COUNTER':
+            let counter = state.counter;
+            if (counter > 0) {
+                counter--;
+            }
+            return {
+                ...state,
+                counter,
             };
         default:
             return state;

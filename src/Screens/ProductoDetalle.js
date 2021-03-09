@@ -16,9 +16,9 @@ function ProductoDetalle() {
         dispatch({
             type: 'ADD_TO_BASKET',
             item: {
-                src: currentProduct.src,
+                image: currentProduct.image,
                 name: currentProduct.name,
-                unidad: currentProduct.unidad,
+                unit: currentProduct.unit,
                 price: currentProduct.price,
                 id: currentProduct.id,
                 qty: qty[currentProduct.index],
@@ -56,10 +56,10 @@ function ProductoDetalle() {
             <div>
                 <div className="product__detalle" key={currentProduct.index}>
                     <div className="product__img__container__detalle">
-                        {currentProduct.src ? (
+                        {currentProduct.image ? (
                             <img
                                 className="product__img__detalle"
-                                src={currentProduct.src}
+                                src={currentProduct.image}
                                 alt={currentProduct.name}
                             />
                         ) : (
@@ -76,8 +76,8 @@ function ProductoDetalle() {
                             </p>
                             <p className="product__unit__detalle">
                                 Unidad:{' '}
-                                {currentProduct.unidad ? (
-                                    <span>{currentProduct.unidad}</span>
+                                {currentProduct.unit ? (
+                                    <span>{currentProduct.unit}</span>
                                 ) : (
                                     <span>N/A</span>
                                 )}

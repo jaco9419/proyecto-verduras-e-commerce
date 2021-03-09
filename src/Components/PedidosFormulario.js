@@ -2,6 +2,8 @@ import React from 'react';
 import { useStateValue } from '../StateProvider';
 import '../style/PedidosFormulario.css';
 
+const { REACT_APP_API_URL } = process.env;
+
 function PedidosFormulario() {
     const [{ custumerInfo, accountName }, dispatch] = useStateValue();
 
@@ -23,7 +25,7 @@ function PedidosFormulario() {
     };
 
     const loadUserInfo = async () => {
-        const API_URL = `https://us-central1-duleri-69cbb.cloudfunctions.net/api_quote_v2/accounts/${accountName}/quotes`;
+        const API_URL = `${REACT_APP_API_URL}/accounts/${accountName}/quotes`;
         console.log(API_URL);
         const response = await fetch(API_URL, {
             method: 'post',

@@ -12,20 +12,25 @@ import Landing from './Screens/Landing';
 import Pedidos from './Screens/Pedidos';
 import ProductoDetalle from './Screens/ProductoDetalle';
 
+const { REACT_APP_API_URL } = process.env;
+
 function App() {
-    const [{ accountPath, accountName, qty, products }, dispatch] = useStateValue();
+    const [
+        { accountPath, accountName, qty, products, origin },
+        dispatch,
+    ] = useStateValue();
 
     useEffect(() => {
         loadUserName();
     }, []);
 
     const loadUserName = async () => {
-        const API_URL = `https://us-central1-duleri-69cbb.cloudfunctions.net/api_quote_v2/quoteWebsite?quoteWebsite=https%3A%2F%2Fproyecto-verduras-e-commerce.web.app%2Faccounts%2F${accountPath}`;
+        const API_URL = `${REACT_APP_API_URL}/accounts?quoteWebsite=${origin}`;
         const response = await fetch(API_URL);
         const data = await response.json();
 
         dispatch({
-            type: 'LOAD_USER_NAME',
+            type: 'LOAD_ACCOUNT_NAME',
             item: {
                 data,
             },
@@ -34,21 +39,21 @@ function App() {
 
     useEffect(() => {
         loadProducts();
-}, [accountName]);
+    }, [accountName]);
 
-const loadProducts = async () => {
-    const API_URL = `https://us-central1-duleri-69cbb.cloudfunctions.net/api_quote_v2/accounts/${accountName}/products`;
-    const response = await fetch(API_URL);
-    const data = await response.json();
+    const loadProducts = async () => {
+        const API_URL = `${REACT_APP_API_URL}/accounts/${accountName}/products?page=1&per_page=10`;
+        const response = await fetch(API_URL);
+        const data = await response.json();
 
-    dispatch({
-        type: 'LOAD_PRODUCTS',
-        item: {
-            data,
-            qty: qty[products.index],
-        },
-    });
-};
+        dispatch({
+            type: 'LOAD_PRODUCTS',
+            item: {
+                data,
+                qty: qty[products.index],
+            },
+        });
+    };
 
     return (
         <Router>

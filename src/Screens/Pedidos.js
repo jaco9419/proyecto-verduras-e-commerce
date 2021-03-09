@@ -18,19 +18,19 @@ function Pedidos() {
                 {basket.length === 0 ? (
                     <p className="sin__pedido">No tiene ningún pedido aún</p>
                 ) : (
-                    basket.map((pedido, i) => (
+                    basket.map((order, i) => (
                         <ProductosPedidos 
-                            pedido = {pedido}
-                            src = {pedido.src}
-                            name = {pedido.name}
-                            unidad = {pedido.unidad}
-                            price = {pedido.price}
-                            qty = {qty[pedido.index]}
-                            id = {pedido.id}
-                            index = {pedido.index}
+                            order = {order}
+                            image = {order.image}
+                            name = {order.name}
+                            unit = {order.unit}
+                            price = {order.price}
+                            qty = {qty[order.index]}
+                            id = {order.id}
+                            index = {order.index}
                             indexInBasket = {i}
                             key={i}
-                            description={pedido.description}
+                            description={order.description}
                         />
                     ))
                 )}

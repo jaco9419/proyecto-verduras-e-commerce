@@ -7,9 +7,9 @@ import { Link } from 'react-router-dom';
 import ImageIcon from '@material-ui/icons/Image';
 
 function ProductosLanding({
-    src,
+    image,
     name,
-    unidad,
+    unit,
     price,
     id,
     qty,
@@ -21,9 +21,9 @@ function ProductosLanding({
         dispatch({
             type: 'ADD_TO_BASKET',
             item: {
-                src,
+                image,
                 name,
-                unidad,
+                unit,
                 price,
                 id,
                 qty: qty[index],
@@ -57,9 +57,9 @@ function ProductosLanding({
         dispatch({
             type: 'SET_CURRENT_PRODUCT',
             item: {
-                src,
+                image,
                 name,
-                unidad,
+                unit,
                 price,
                 id,
                 qty: qty[index],
@@ -82,11 +82,11 @@ function ProductosLanding({
                             <Link
                                 to={`/accounts/${accountPath}/products/${name}`}
                             >
-                                {src ? (
+                                {image ? (
                                     <img
                                         onClick={setCurrentProduct}
                                         className="product__img"
-                                        src={src}
+                                        src={image}
                                         alt={name}
                                     />
                                 ) : (
@@ -114,8 +114,8 @@ function ProductosLanding({
                                 </Link>
                                 <p className="product__unit">
                                     Unidad:{' '}
-                                    {unidad ? (
-                                        <span>{unidad}</span>
+                                    {unit ? (
+                                        <span>{unit}</span>
                                     ) : (
                                         <span>N/A</span>
                                     )}

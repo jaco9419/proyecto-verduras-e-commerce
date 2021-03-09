@@ -6,10 +6,10 @@ import { useStateValue } from '../StateProvider';
 import ImageIcon from '@material-ui/icons/Image';
 
 function ProductosPedidos({
-    pedido,
-    src,
+    order,
+    image,
     name,
-    unidad,
+    unit,
     price,
     id,
     index,
@@ -18,7 +18,7 @@ function ProductosPedidos({
 }) {
     const [{ qty }, dispatch] = useStateValue();
 
-    const increaseQty = (pedido) => {
+    const increaseQty = (order) => {
         dispatch({
             type: 'INCREASE_QTY',
             item: {
@@ -28,7 +28,7 @@ function ProductosPedidos({
         });
     };
 
-    const decreaseQty = (pedido) => {
+    const decreaseQty = (order) => {
         dispatch({
             type: 'DECREASE_QTY',
             item: {
@@ -38,11 +38,11 @@ function ProductosPedidos({
         });
     };
 
-    const removeFromBasket = (pedidoIndex) => {
+    const removeFromBasket = (orderIndex) => {
         dispatch({
             type: 'REMOVE_FROM_BASKET',
             item: {
-                index: pedidoIndex,
+                index: orderIndex,
             },
         });
     };
@@ -57,10 +57,10 @@ function ProductosPedidos({
                 {(props) => (
                     <div style={props}>
                         <div className="pedido" key={indexInBasket}>
-                            {src ? (
+                            {image ? (
                                 <img
                                     className="pedido__img"
-                                    src={src}
+                                    src={image}
                                     alt={name}
                                 />
                             ) : (
@@ -74,8 +74,8 @@ function ProductosPedidos({
                                     <p className="pedido__title">{name}</p>
                                     <p className="pedido__unit">
                                         Unidad:{' '}
-                                        {unidad ? (
-                                            <span>{unidad}</span>
+                                        {unit ? (
+                                            <span>{unit}</span>
                                         ) : (
                                             <span>N/A</span>
                                         )}
@@ -100,7 +100,7 @@ function ProductosPedidos({
                                 <div className="pedido__buttons">
                                     <div className="pedido__btn__quantity__box">
                                         <button
-                                            onClick={() => decreaseQty(pedido)}
+                                            onClick={() => decreaseQty(order)}
                                             className="btn__quantity pedido__btn__control btn__decrease"
                                         >
                                             <MinusIcon className="minus__icon btn__quantity pedido__btn__control" />
@@ -109,7 +109,7 @@ function ProductosPedidos({
                                             {qty[index]}
                                         </p>
                                         <button
-                                            onClick={() => increaseQty(pedido)}
+                                            onClick={() => increaseQty(order)}
                                             className="pedido__btn__control btn__increase btn__quantity"
                                         >
                                             <PlusIcon className="plus__icon btn__quantity pedido__btn__control" />
