@@ -16,24 +16,24 @@ function ProductosPedidos({
     indexInBasket,
     description,
 }) {
-    const [{ qty }, dispatch] = useStateValue();
+    const [{ qtyBasket }, dispatch] = useStateValue();
 
     const increaseQty = (order) => {
         dispatch({
-            type: 'INCREASE_QTY',
+            type: 'INCREASE_QTY_BASKET',
             item: {
-                qty,
-                index,
+                qty: qtyBasket,
+                index: indexInBasket,
             },
         });
     };
 
     const decreaseQty = (order) => {
         dispatch({
-            type: 'DECREASE_QTY',
+            type: 'DECREASE_QTY_BASKET',
             item: {
-                qty,
-                index,
+                qty: qtyBasket,
+                index: indexInBasket,
             },
         });
     };
@@ -42,7 +42,7 @@ function ProductosPedidos({
         dispatch({
             type: 'REMOVE_FROM_BASKET',
             item: {
-                index: orderIndex,
+                index: indexInBasket,
             },
         });
     };
@@ -106,7 +106,7 @@ function ProductosPedidos({
                                             <MinusIcon className="minus__icon btn__quantity pedido__btn__control" />
                                         </button>
                                         <p className="product__quantity">
-                                            {qty[index]}
+                                            {qtyBasket[indexInBasket]}
                                         </p>
                                         <button
                                             onClick={() => increaseQty(order)}
@@ -117,7 +117,7 @@ function ProductosPedidos({
                                     </div>
 
                                     <button
-                                        onClick={() => removeFromBasket(index)}
+                                        onClick={() => removeFromBasket(indexInBasket)}
                                         className="btn__quantity btn__delete"
                                     >
                                         Borrar

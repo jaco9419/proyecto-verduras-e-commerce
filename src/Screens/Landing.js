@@ -11,7 +11,7 @@ const { REACT_APP_API_URL } = process.env;
 
 function Landing() {
     const [
-        { products, qty, productsViewList, accountName, counter },
+        { products, qty, productsViewList, accountName, counter, isSearching },
         dispatch,
     ] = useStateValue();
 
@@ -83,7 +83,7 @@ function Landing() {
                         : 'products__container__list'
                 }
             >
-                {products[0]?.name || products[0]?.image ? (
+                {products?.length > 0 ? (
                     products.map((product, index) =>
                         productsViewList === false ? (
                             <ProductosLanding
@@ -115,11 +115,18 @@ function Landing() {
                     <div className="landing__message__error">
                         <p>Cargando productos...</p>
                     </div>
-                ) : (
+                ) : !isSearching ? (
                     <div className="landing__message__error">
                         <p>
                             No hay productos en esta cuenta. Por favor,
-                            verifique la página e intente de nuevo.
+                            verifique la cuenta y URL, e intente de nuevo.
+                        </p>
+                    </div>
+                ) : (
+                    <div className="landing__message__error">
+                        <p>
+                            El producto que busca no existe. Por favor, intente
+                            la búsqueda de nuevo.
                         </p>
                     </div>
                 )}

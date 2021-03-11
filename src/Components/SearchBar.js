@@ -3,14 +3,22 @@ import '../style/SearchBar.css';
 import SearchIcon from '@material-ui/icons/Search';
 import { useStateValue } from '../StateProvider';
 
+const { REACT_APP_API_URL } = process.env;
+
 function SearchBar() {
-    const [{ searchWord, qty, products, accountName }, dispatch] = useStateValue();
+    const [
+        { searchWord, qty, products, accountName },
+        dispatch,
+    ] = useStateValue();
 
     const loadProducts = async () => {
-        const API_URL = `https://us-central1-duleri-69cbb.cloudfunctions.net/api_quote_v2/accounts/${accountName}/products`;
+        const API_URL =
+            searchWord === ''
+                ? `${REACT_APP_API_URL}/accounts/${accountName}/products?page=1&per_page=10`
+                : `${REACT_APP_API_URL}/accounts/${accountName}/products?query=${searchWord}&page=1&per_page=10`;
         const response = await fetch(API_URL);
         const data = await response.json();
-    
+
         dispatch({
             type: 'LOAD_SEARCHED_PRODUCTS',
             item: {
@@ -21,7 +29,6 @@ function SearchBar() {
     };
 
     const handleInputChange = (event) => {
-        
         event.preventDefault();
         dispatch({
             type: 'SEARCH_PRODUCT',
@@ -29,7 +36,12 @@ function SearchBar() {
                 value: event.target.value,
             },
         });
-        loadProducts();
+    };
+
+    const handleKeyPress = (event) => {
+        if (event.code === "Enter") {
+            loadProducts();
+        }
     };
 
     return (
@@ -41,8 +53,9 @@ function SearchBar() {
                     placeholder="Ingrese un artículo para buscar"
                     onChange={handleInputChange}
                     value={searchWord}
+                    onKeyPress={handleKeyPress}
                 />
-                <SearchIcon className="search__icon" />
+                <SearchIcon className="search__icon" onClick={loadProducts} />
             </div>
         </div>
     );

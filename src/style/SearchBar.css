@@ -36,6 +36,7 @@
     font-size: var(--fs-icon) !important;
     position: absolute;
     right: 5px;
+    cursor: pointer;
 }
 
 @media (min-width: 460px) {

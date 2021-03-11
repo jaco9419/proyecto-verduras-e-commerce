@@ -12,12 +12,12 @@ const newHref = href
     .replace('/pedido', '')
     .replace('/pedido/', '');
 const origin = newHref.replaceAll(':', '%3A').replaceAll('/', '%2F');
-console.log(origin);
 
 export const initialState = {
     products: [],
     basket: [],
     qty: [],
+    qtyBasket: [],
     accountName: {},
     accountPath,
     accountInfo: {},
@@ -27,6 +27,7 @@ export const initialState = {
     currentProduct: [],
     searchWord: '',
     counter: 7,
+    isSearching: false,
 };
 
 const reducer = (state, action) => {
@@ -54,47 +55,50 @@ const reducer = (state, action) => {
         case 'ADD_TO_BASKET': {
             const itemIndex = action.item.index;
             const newBasket = [...state.basket];
+            const newQty = [...state.qtyBasket];
             const basketIndex = newBasket.indexOf(
-                newBasket.find((element) => element.index === itemIndex)
+                newBasket.find((element, i) => i === itemIndex)
             );
             if (basketIndex !== -1) {
                 newBasket.splice(basketIndex, 1, action.item);
+                newQty.splice(basketIndex, 1, action.item.qty);
             } else {
                 newBasket.push(action.item);
+                newQty.push(action.item.qty);
             }
             return {
                 ...state,
                 basket: [...newBasket],
+                qtyBasket: [...newQty],
             };
         }
         case 'REMOVE_FROM_BASKET': {
             const itemIndex = action.item.index;
             const newBasket = [...state.basket];
+            const newQty = [...state.qtyBasket];
             const basketIndex = newBasket.indexOf(
-                newBasket.find((element) => element.index === itemIndex)
+                newBasket.find((element, i) => i === itemIndex)
             );
             if (basketIndex !== -1) {
                 newBasket.splice(basketIndex, 1);
+                newQty.splice(basketIndex, 1);
             } else {
                 newBasket.pop(action.item);
+                newQty.pop(action.item);
             }
 
             return {
                 ...state,
                 basket: [...newBasket],
+                qtyBasket: [...newQty],
             };
         }
         case 'INCREASE_QTY': {
             const qtyIndex = action.item.index;
             const newQty = [...state.qty];
             newQty[qtyIndex]++;
-            const newBasket = [...state.basket];
-            newBasket.forEach((item) => {
-                item.qty = newQty[qtyIndex];
-            });
             return {
                 ...state,
-                basket: [...newBasket],
                 qty: [...newQty],
             };
         }
@@ -107,6 +111,32 @@ const reducer = (state, action) => {
             return {
                 ...state,
                 qty: [...newQty],
+            };
+        }
+        case 'INCREASE_QTY_BASKET': {
+            const qtyIndex = action.item.index;
+            const newQty = [...state.qtyBasket];
+            newQty[qtyIndex]++;
+            const newBasket = [...state.basket];
+            newBasket[qtyIndex].qty = newQty[qtyIndex];
+            return {
+                ...state,
+                basket: [...newBasket],
+                qtyBasket: [...newQty],
+            };
+        }
+        case 'DECREASE_QTY_BASKET': {
+            const qtyIndex = action.item.index;
+            const newQty = [...state.qtyBasket];
+            if (newQty[qtyIndex] > 1) {
+                newQty[qtyIndex]--;
+            }
+            const newBasket = [...state.basket];
+            newBasket[qtyIndex].qty = newQty[qtyIndex];
+            return {
+                ...state,
+                basket: [...newBasket],
+                qtyBasket: [...newQty],
             };
         }
         case 'TOGGLE_VIEW':
@@ -212,19 +242,12 @@ const reducer = (state, action) => {
             };
         case 'LOAD_SEARCHED_PRODUCTS':
             const dataLengthy = action.item.data ? action.item.data.length : 1;
-            const filteredProducts = action.item.data.filter(
-                (product) =>
-                    product.name?.includes(state.searchWord) ||
-                    product.unit?.includes(state.searchWord) ||
-                    product.description?.includes(state.searchWord)
-            );
+            const filteredProducts = action.item.data;
             return {
                 ...state,
                 products: filteredProducts,
-                qty:
-                    state.qty.length > 1
-                        ? [...state.qty]
-                        : Array(dataLengthy).fill(1),
+                qty: Array(dataLengthy).fill(1),
+                isSearching: true,
             };
         case 'DECREASE_COUNTER':
             let counter = state.counter;

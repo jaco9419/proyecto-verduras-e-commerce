@@ -6,7 +6,7 @@ import ProductosPedidos from '../Components/ProductosPedidos';
 import { Redirect } from 'react-router-dom';
 
 function Pedidos() {
-    const [{ basket, qty, accountPath }, ] = useStateValue();
+    const [{ basket, qtyBasket, accountPath }, ] = useStateValue();
     
     return (
         <div className="pedidos__container">
@@ -25,7 +25,7 @@ function Pedidos() {
                             name = {order.name}
                             unit = {order.unit}
                             price = {order.price}
-                            qty = {qty[order.index]}
+                            qty = {qtyBasket[order.index]}
                             id = {order.id}
                             index = {order.index}
                             indexInBasket = {i}
