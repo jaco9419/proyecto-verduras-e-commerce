@@ -1,7 +1,7 @@
 window.env = {
   "ALLUSERSPROFILE": "C:\\ProgramData",
   "APPDATA": "C:\\Users\\Lenovo\\AppData\\Roaming",
-  "CHROME_CRASHPAD_PIPE_NAME": "\\\\.\\pipe\\crashpad_7332_UFWVSHSFQADIFPKC",
+  "CHROME_CRASHPAD_PIPE_NAME": "\\\\.\\pipe\\crashpad_14024_JJPWHVIDSMIIRGDG",
   "COLORTERM": "truecolor",
   "COMMONPROGRAMFILES": "C:\\Program Files\\Common Files",
   "CommonProgramFiles(x86)": "C:\\Program Files (x86)\\Common Files",
@@ -177,7 +177,7 @@ window.env = {
   "npm_package_description": "You can check out this project hosted on firebase by coyping the following link: https://proyecto-verduras-e-commerce.web.app/ _________________________________________________",
   "npm_package_eslintConfig_extends_0": "react-app",
   "npm_package_eslintConfig_extends_1": "react-app/jest",
-  "npm_package_gitHead": "971d7742ff2f3797405e3621aca0091621a073b9",
+  "npm_package_gitHead": "bdd649f36d1628225b1792950d223bd2b6770e40",
   "npm_package_name": "proyecto-verduras-e-commerce",
   "npm_package_private": "true",
   "npm_package_readmeFilename": "README.md",
@@ -216,7 +216,7 @@ window.env = {
   "TEMP": "C:\\Users\\Lenovo\\AppData\\Local\\Temp",
   "TERM": "xterm-256color",
   "TERM_PROGRAM": "vscode",
-  "TERM_PROGRAM_VERSION": "1.53.2",
+  "TERM_PROGRAM_VERSION": "1.54.2",
   "TMP": "C:\\Users\\Lenovo\\AppData\\Local\\Temp",
   "USERDOMAIN": "JORGE-CACERES",
   "USERDOMAIN_ROAMINGPROFILE": "JORGE-CACERES",
@@ -227,5 +227,6 @@ window.env = {
   "VSCODE_GIT_IPC_HANDLE": "\\\\.\\pipe\\vscode-git-c89e5b71b8-sock",
   "WINDIR": "C:\\WINDOWS",
   "_": "C:/Program Files/nodejs/node.exe",
-  "_prog": "node"
+  "_prog": "node",
+  "__COMPAT_LAYER": "DetectorsAppHealth"
 };

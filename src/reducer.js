@@ -53,19 +53,10 @@ const reducer = (state, action) => {
                         : Array(dataLength).fill(1),
             };
         case 'ADD_TO_BASKET': {
-            const itemIndex = action.item.index;
             const newBasket = [...state.basket];
             const newQty = [...state.qtyBasket];
-            const basketIndex = newBasket.indexOf(
-                newBasket.find((element, i) => i === itemIndex)
-            );
-            if (basketIndex !== -1) {
-                newBasket.splice(basketIndex, 1, action.item);
-                newQty.splice(basketIndex, 1, action.item.qty);
-            } else {
-                newBasket.push(action.item);
-                newQty.push(action.item.qty);
-            }
+            newBasket.push(action.item);
+            newQty.push(action.item.qty);
             return {
                 ...state,
                 basket: [...newBasket],
@@ -86,7 +77,6 @@ const reducer = (state, action) => {
                 newBasket.pop(action.item);
                 newQty.pop(action.item);
             }
-
             return {
                 ...state,
                 basket: [...newBasket],
