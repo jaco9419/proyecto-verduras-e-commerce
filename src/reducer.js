@@ -35,7 +35,7 @@ const reducer = (state, action) => {
         case 'LOAD_ACCOUNT_NAME':
             return {
                 ...state,
-                accountName: action.item.data.accountName,
+                accountName: action.item.data[0],
             };
         case 'LOAD_ACCOUNT_INFO':
             return {
@@ -136,85 +136,76 @@ const reducer = (state, action) => {
             };
         case 'HANDLE_INPUT_CHANGE':
             switch (action.item.targetName) {
-                case 'nombre':
+                case 'name':
                     return {
                         ...state,
                         custumerInfo: {
                             ...state.custumerInfo,
                             basket: [...state.basket],
-                            nombre: action.item.targetValue,
+                            name: action.item.targetValue,
                         },
-                    };
-                case 'apellido':
+                    };                
+                case 'email':
                     return {
                         ...state,
                         custumerInfo: {
                             ...state.custumerInfo,
                             basket: [...state.basket],
-                            apellido: action.item.targetValue,
+                            email: action.item.targetValue,
                         },
                     };
-                case 'mail':
+                case 'phone':
                     return {
                         ...state,
                         custumerInfo: {
                             ...state.custumerInfo,
                             basket: [...state.basket],
-                            mail: action.item.targetValue,
+                            phone: action.item.targetValue,
                         },
                     };
-                case 'telefono':
+                case 'state':
                     return {
                         ...state,
                         custumerInfo: {
                             ...state.custumerInfo,
                             basket: [...state.basket],
-                            telefono: action.item.targetValue,
+                            state: action.item.targetValue,
                         },
                     };
-                case 'provincia':
+                case 'city':
                     return {
                         ...state,
                         custumerInfo: {
                             ...state.custumerInfo,
                             basket: [...state.basket],
-                            provincia: action.item.targetValue,
+                            city: action.item.targetValue,
                         },
                     };
-                case 'ciudad':
+                case 'deliveryAdress':
                     return {
                         ...state,
                         custumerInfo: {
                             ...state.custumerInfo,
                             basket: [...state.basket],
-                            ciudad: action.item.targetValue,
+                            deliveryAdress: action.item.targetValue,
                         },
                     };
-                case 'direccion':
-                    return {
-                        ...state,
-                        custumerInfo: {
-                            ...state.custumerInfo,
-                            basket: [...state.basket],
-                            direccion: action.item.targetValue,
-                        },
-                    };
-                case 'detalles_direccion':
-                    return {
-                        ...state,
-                        custumerInfo: {
-                            ...state.custumerInfo,
-                            basket: [...state.basket],
-                            detalles_direccion: action.item.targetValue,
-                        },
-                    };
+                // case 'detalles_direccion':
+                //     return {
+                //         ...state,
+                //         custumerInfo: {
+                //             ...state.custumerInfo,
+                //             basket: [...state.basket],
+                //             detalles_direccion: action.item.targetValue,
+                //         },
+                //     };
                 case 'CDP':
                     return {
                         ...state,
                         custumerInfo: {
                             ...state.custumerInfo,
                             basket: [...state.basket],
-                            CDP: action.item.targetValue,
+                            zipCode: action.item.targetValue,
                         },
                     };
                 default:

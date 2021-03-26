@@ -21,10 +21,10 @@ function App() {
     ] = useStateValue();
 
     useEffect(() => {
-        loadUserName();
+        loadAccountName();
     }, []);
 
-    const loadUserName = async () => {
+    const loadAccountName = async () => {
         const API_URL = `${REACT_APP_API_URL}/accounts?quoteWebsite=${origin}`;
         const response = await fetch(API_URL);
         const data = await response.json();

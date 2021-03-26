@@ -1,5 +1,14 @@
-You can check out this project hosted on firebase by coyping the following link:
-https://proyecto-verduras-e-commerce.web.app/
+# proyecto-verduras-e-commerce
+Proyecto Verduras e-commerce built in React.
+
+You can check out this project hosted on firebase by coyping the following link and adding a valid accounts path.
+
+For example:
+https://proyecto-verduras-e-commerce.web.app/accounts/puesto1
+
+Or you can run it locally as follows:
+
+http://localhost:3000/accounts/puesto3/products
 _________________________________________________
 
 # Getting Started with Create React App
@@ -9,6 +18,10 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## Available Scripts
 
 In the project directory, you can run:
+
+### `npm install`
+
+Intalls all necessary dependencies.
 
 ### `npm start`
 

@@ -9,6 +9,7 @@ function PedidosFormulario() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        console.log(custumerInfo);
         loadUserInfo();
     };
 
@@ -25,7 +26,7 @@ function PedidosFormulario() {
     };
 
     const loadUserInfo = async () => {
-        const API_URL = `${REACT_APP_API_URL}/accounts/${accountName}/quotes`;
+        const API_URL = `${REACT_APP_API_URL}/data/${accountName}`;
         console.log(API_URL);
         const response = await fetch(API_URL, {
             method: 'post',
@@ -47,91 +48,81 @@ function PedidosFormulario() {
             >
                 <h3 className="pedidos__form__message">Registrá tus datos</h3>
                 <input
-                    name="nombre"
+                    name="name"
                     type="text"
-                    placeholder="Nombre*"
+                    placeholder="Nombre y apellido*"
                     className="pedidos__form__text"
                     onChange={handleInputChange}
-                    value={custumerInfo.nombre}
+                    value={custumerInfo.name}
                     required
                 />
-
+                
                 <input
-                    name="apellido"
-                    type="text"
-                    placeholder="Apellido*"
-                    className="pedidos__form__text"
-                    onChange={handleInputChange}
-                    value={custumerInfo.apellido}
-                    required
-                />
-
-                <input
-                    name="mail"
+                    name="email"
                     type="email"
-                    placeholder="Correo*"
+                    placeholder="Email*"
                     className="pedidos__form__text"
                     onChange={handleInputChange}
-                    value={custumerInfo.mail}
+                    value={custumerInfo.email}
                     required
                 />
 
                 <input
-                    name="telefono"
+                    name="phone"
                     type="tel"
-                    placeholder="Teléfono*"
+                    placeholder="Celular*"
                     className="pedidos__form__text"
                     onChange={handleInputChange}
-                    value={custumerInfo.telefono}
+                    value={custumerInfo.phone}
                     required
                 />
 
                 <input
-                    name="provincia"
+                    name="state"
                     type="text"
                     placeholder="Provincia*"
                     className="pedidos__form__text"
                     onChange={handleInputChange}
-                    value={custumerInfo.provincia}
+                    value={custumerInfo.state}
                     required
                 />
 
                 <input
-                    name="ciudad"
+                    name="city"
                     type="text"
                     placeholder="Ciudad*"
                     className="pedidos__form__text"
                     onChange={handleInputChange}
-                    value={custumerInfo.ciudad}
+                    value={custumerInfo.city}
                     required
                 />
 
                 <input
-                    name="direccion"
+                    name="deliveryAdress"
                     type="text"
                     placeholder="Dirección para recibir pedido*"
                     className="pedidos__form__text"
                     onChange={handleInputChange}
-                    value={custumerInfo.direccion}
+                    value={custumerInfo.deliveryAdress}
                     required
                 />
 
-                <textarea
+                {/*<textarea
                     id="direccion"
                     name="detalles_direccion"
                     placeholder="Detalles dirección"
                     className="pedidos__form__text pedidos__form__textarea"
                     onChange={handleInputChange}
                     value={custumerInfo.detalles_direccion}
-                ></textarea>
+                ></textarea>*/}
 
                 <input
-                    name="CDP"
+                    name="zipCode"
                     type="text"
                     placeholder="CDP*"
                     className="pedidos__form__text"
                     onChange={handleInputChange}
-                    value={custumerInfo.CDP}
+                    value={custumerInfo.zipCode}
                     required
                 />
 
