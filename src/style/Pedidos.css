@@ -189,7 +189,7 @@
     }
 }
 
-@media (min-width: 800px) {
+@media (min-width: 890px) {
     .pedidos__container {
         display: grid;
         grid-template:

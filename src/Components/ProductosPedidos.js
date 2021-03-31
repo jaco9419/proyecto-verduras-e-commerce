@@ -42,6 +42,7 @@ function ProductosPedidos({
         dispatch({
             type: 'REMOVE_FROM_BASKET',
             item: {
+                name,
                 index: indexInBasket,
             },
         });

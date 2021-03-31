@@ -7,30 +7,11 @@ import ListViewIcon from '@material-ui/icons/ViewList';
 import BoxViewIcon from '@material-ui/icons/Apps';
 import ProductosLista from '../Components/ProductosLista';
 
-const { REACT_APP_API_URL } = process.env;
-
 function Landing() {
     const [
-        { products, qty, productsViewList, accountName, counter, isSearching },
+        { products, qty, productsViewList, counter, isSearching },
         dispatch,
     ] = useStateValue();
-
-    useEffect(() => {
-        loadUserInfo();
-    }, [accountName]);
-
-    const loadUserInfo = async () => {
-        const API_URL = `${REACT_APP_API_URL}/accounts/${accountName}`;
-        const response = await fetch(API_URL);
-        const data = await response.json();
-
-        dispatch({
-            type: 'LOAD_ACCOUNT_INFO',
-            item: {
-                data,
-            },
-        });
-    };
 
     useEffect(() => {
         decreaseCounter();
@@ -55,7 +36,7 @@ function Landing() {
         <div className="landing">
             <div className="landing__message">
                 <p>
-                    Encontrá las verduras y frutas más frescas y hacé tu pedido
+                    Lista de productos
                 </p>
             </div>
 
@@ -118,8 +99,7 @@ function Landing() {
                 ) : !isSearching ? (
                     <div className="landing__message__error">
                         <p>
-                            No hay productos en esta cuenta. Por favor,
-                            verifique la cuenta y URL, e intente de nuevo.
+                            No existen productos en esta cuenta.
                         </p>
                     </div>
                 ) : (

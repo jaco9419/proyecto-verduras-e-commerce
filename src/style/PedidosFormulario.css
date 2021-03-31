@@ -1,5 +1,6 @@
 .pedidos__form__container {
-    width: 100%;
+    min-width: 30vw;
+    max-width: 100%;
     grid-area: formulario;
 }
 
@@ -22,6 +23,39 @@
 .pedidos__form__text {
     width: 90%;
     margin: 1rem;
+    padding: 0.75rem;
+    border-radius: 15px;
+    border: var(--clr-main-light) 1px solid;
+    background-color: var(--clr-main-light);
+    outline: none;
+    transition: 0.2s;
+    box-shadow: var(--bs-2);
+    color: var(--clr-dark);
+}
+
+.pedidos__form__phone__container {
+    width: 92%;
+    padding: 0;
+    display: flex;
+
+}
+
+.pedidos__form__prefix {
+    width: 10rem;
+    margin: 1rem 0.25rem 1rem 0;
+    padding: 0.75rem;
+    border-radius: 15px;
+    border: var(--clr-main-light) 1px solid;
+    background-color: var(--clr-light);
+    outline: none;
+    transition: 0.2s;
+    box-shadow: var(--bs-2);
+    color: var(--clr-dark);
+}
+
+.pedidos__form__phone {
+    width: 100%;
+    margin: 1rem 0;
     padding: 0.75rem;
     border-radius: 15px;
     border: var(--clr-main-light) 1px solid;

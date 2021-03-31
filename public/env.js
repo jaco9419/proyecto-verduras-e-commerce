@@ -1,7 +1,7 @@
 window.env = {
   "ALLUSERSPROFILE": "C:\\ProgramData",
   "APPDATA": "C:\\Users\\Lenovo\\AppData\\Roaming",
-  "CHROME_CRASHPAD_PIPE_NAME": "\\\\.\\pipe\\crashpad_18604_GHYCQMZNECGEQLPY",
+  "CHROME_CRASHPAD_PIPE_NAME": "\\\\.\\pipe\\crashpad_23128_FPKCRURRHHDQWFUO",
   "COLORTERM": "truecolor",
   "COMMONPROGRAMFILES": "C:\\Program Files\\Common Files",
   "CommonProgramFiles(x86)": "C:\\Program Files (x86)\\Common Files",
@@ -177,7 +177,7 @@ window.env = {
   "npm_package_description": "Proyecto Verduras e-commerce built in React.",
   "npm_package_eslintConfig_extends_0": "react-app",
   "npm_package_eslintConfig_extends_1": "react-app/jest",
-  "npm_package_gitHead": "0f4ff285cced63ba23f9859c4c2a72a74daef77b",
+  "npm_package_gitHead": "797716a86b45574dd5acbde00986c6d1bc067198",
   "npm_package_name": "proyecto-verduras-e-commerce",
   "npm_package_private": "true",
   "npm_package_readmeFilename": "README.md",
@@ -227,6 +227,5 @@ window.env = {
   "VSCODE_GIT_IPC_HANDLE": "\\\\.\\pipe\\vscode-git-c89e5b71b8-sock",
   "WINDIR": "C:\\WINDOWS",
   "_": "C:/Program Files/nodejs/node.exe",
-  "_prog": "node",
-  "__COMPAT_LAYER": "DetectorsAppHealth"
+  "_prog": "node"
 };

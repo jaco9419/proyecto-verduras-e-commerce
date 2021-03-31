@@ -23,11 +23,13 @@ export const initialState = {
     accountInfo: {},
     origin,
     productsViewList: false,
+    mobilePhone: "11",
     custumerInfo: {},
     currentProduct: [],
     searchWord: '',
     counter: 7,
     isSearching: false,
+    phoneCode: "54",
 };
 
 const reducer = (state, action) => {
@@ -53,10 +55,19 @@ const reducer = (state, action) => {
                         : Array(dataLength).fill(1),
             };
         case 'ADD_TO_BASKET': {
+            const itemName = action.item.name;
             const newBasket = [...state.basket];
             const newQty = [...state.qtyBasket];
-            newBasket.push(action.item);
-            newQty.push(action.item.qty);
+            const basketIndex = newBasket.indexOf(
+                newBasket.find((element) => element.name === itemName)
+            );
+            if (basketIndex !== -1) {
+                newBasket.splice(basketIndex, 1, action.item);
+                newQty.splice(basketIndex, 1, action.item.qty);
+            } else {
+                newBasket.push(action.item);
+                newQty.push(action.item.qty);
+            }
             return {
                 ...state,
                 basket: [...newBasket],
@@ -64,18 +75,19 @@ const reducer = (state, action) => {
             };
         }
         case 'REMOVE_FROM_BASKET': {
-            const itemIndex = action.item.index;
+            const itemName = action.item.name;
             const newBasket = [...state.basket];
             const newQty = [...state.qtyBasket];
             const basketIndex = newBasket.indexOf(
-                newBasket.find((element, i) => i === itemIndex)
+                newBasket.find((element) => element.name === itemName)
             );
+            console.log(basketIndex);
             if (basketIndex !== -1) {
                 newBasket.splice(basketIndex, 1);
                 newQty.splice(basketIndex, 1);
             } else {
-                newBasket.pop(action.item);
-                newQty.pop(action.item);
+                newBasket.pop();
+                newQty.pop();
             }
             return {
                 ...state,
@@ -144,7 +156,7 @@ const reducer = (state, action) => {
                             basket: [...state.basket],
                             name: action.item.targetValue,
                         },
-                    };                
+                    };
                 case 'email':
                     return {
                         ...state,
@@ -154,13 +166,21 @@ const reducer = (state, action) => {
                             email: action.item.targetValue,
                         },
                     };
-                case 'phone':
+                case 'phoneCode':
                     return {
                         ...state,
+                        phoneCode: action.item.targetValue,
+                    };
+                case 'mobilePhone':
+                    const completeMobilePhone = state.phoneCode + "9" + action.item.targetValue;
+                    const incompleteMobilePhone = action.item.targetValue;
+                    return {
+                        ...state,
+                        mobilePhone: incompleteMobilePhone,
                         custumerInfo: {
                             ...state.custumerInfo,
                             basket: [...state.basket],
-                            phone: action.item.targetValue,
+                            mobilePhone: completeMobilePhone,
                         },
                     };
                 case 'state':
@@ -190,16 +210,7 @@ const reducer = (state, action) => {
                             deliveryAdress: action.item.targetValue,
                         },
                     };
-                // case 'detalles_direccion':
-                //     return {
-                //         ...state,
-                //         custumerInfo: {
-                //             ...state.custumerInfo,
-                //             basket: [...state.basket],
-                //             detalles_direccion: action.item.targetValue,
-                //         },
-                //     };
-                case 'CDP':
+                case 'zipCode':
                     return {
                         ...state,
                         custumerInfo: {

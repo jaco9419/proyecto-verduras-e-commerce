@@ -11,12 +11,13 @@ import Header from './Components/Header';
 import Landing from './Screens/Landing';
 import Pedidos from './Screens/Pedidos';
 import ProductoDetalle from './Screens/ProductoDetalle';
+import AccountNotFound from './Screens/AccountNotFound';
 
 const { REACT_APP_API_URL } = process.env;
 
 function App() {
     const [
-        { accountPath, accountName, qty, products, origin },
+        { accountPath, accountName, qty, products, origin, counter },
         dispatch,
     ] = useStateValue();
 
@@ -35,14 +36,26 @@ function App() {
                 data,
             },
         });
+
+        await loadAccountInfo(data[0]);
+        await loadProducts(data[0]);
     };
 
-    useEffect(() => {
-        loadProducts();
-    }, [accountName]);
+    const loadAccountInfo = async (aName) => {
+        const API_URL = `${REACT_APP_API_URL}/accounts/${aName}`;
+        const response = await fetch(API_URL);
+        const data = await response.json();
 
-    const loadProducts = async () => {
-        const API_URL = `${REACT_APP_API_URL}/accounts/${accountName}/products?page=1&per_page=10`;
+        dispatch({
+            type: 'LOAD_ACCOUNT_INFO',
+            item: {
+                data,
+            },
+        });
+    };
+
+    const loadProducts = async (aName) => {
+        const API_URL = `${REACT_APP_API_URL}/accounts/${aName}/products?page=1&per_page=10`;
         const response = await fetch(API_URL);
         const data = await response.json();
 
@@ -68,8 +81,14 @@ function App() {
                         <Pedidos />
                     </Route>
                     <Route path="/accounts/:accountPath/products">
-                        <Header />
-                        <Landing />
+                        {Object.keys(accountName).length || counter - 2 > 0 ? (
+                            <div>
+                                <Header />
+                                <Landing />
+                            </div>
+                        ) : (
+                            <AccountNotFound />
+                        )}
                     </Route>
                     <Route path="/accounts/:accountPath/">
                         <Redirect to={`/accounts/${accountPath}/products`} />

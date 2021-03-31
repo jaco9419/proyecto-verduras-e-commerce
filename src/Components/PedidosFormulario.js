@@ -5,12 +5,11 @@ import '../style/PedidosFormulario.css';
 const { REACT_APP_API_URL } = process.env;
 
 function PedidosFormulario() {
-    const [{ custumerInfo, accountName }, dispatch] = useStateValue();
+    const [{ custumerInfo, accountName, mobilePhone }, dispatch] = useStateValue();
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log(custumerInfo);
-        loadUserInfo();
+        postQuote();
     };
 
     const handleInputChange = (event) => {
@@ -25,9 +24,8 @@ function PedidosFormulario() {
         });
     };
 
-    const loadUserInfo = async () => {
-        const API_URL = `${REACT_APP_API_URL}/data/${accountName}`;
-        console.log(API_URL);
+    const postQuote = async () => {
+        const API_URL = `${REACT_APP_API_URL}/data?accountName=${accountName}`;
         const response = await fetch(API_URL, {
             method: 'post',
             headers: {
@@ -36,9 +34,7 @@ function PedidosFormulario() {
             },
             body: JSON.stringify(custumerInfo),
         });
-        console.log(response);
     };
-
     return (
         <div className="pedidos__form__container">
             <form
@@ -56,7 +52,7 @@ function PedidosFormulario() {
                     value={custumerInfo.name}
                     required
                 />
-                
+
                 <input
                     name="email"
                     type="email"
@@ -67,15 +63,28 @@ function PedidosFormulario() {
                     required
                 />
 
-                <input
-                    name="phone"
-                    type="tel"
-                    placeholder="Celular*"
-                    className="pedidos__form__text"
-                    onChange={handleInputChange}
-                    value={custumerInfo.phone}
-                    required
-                />
+                <div className="pedidos__form__phone__container">
+                    <select
+                        name="phoneCode"
+                        className="pedidos__form__prefix"
+                        onChange={handleInputChange}
+                        required
+                    >
+                        <option value="54">AR +54</option>
+                    </select>
+
+                    <input
+                        name="mobilePhone"
+                        type="tel"
+                        placeholder="Ej: 11 1234 5678"
+                        maxLength="10"
+                        minLength="10"
+                        className="pedidos__form__phone"
+                        value={mobilePhone}
+                        onChange={handleInputChange}
+                        required
+                    />
+                </div>
 
                 <input
                     name="state"
@@ -106,15 +115,6 @@ function PedidosFormulario() {
                     value={custumerInfo.deliveryAdress}
                     required
                 />
-
-                {/*<textarea
-                    id="direccion"
-                    name="detalles_direccion"
-                    placeholder="Detalles dirección"
-                    className="pedidos__form__text pedidos__form__textarea"
-                    onChange={handleInputChange}
-                    value={custumerInfo.detalles_direccion}
-                ></textarea>*/}
 
                 <input
                     name="zipCode"
