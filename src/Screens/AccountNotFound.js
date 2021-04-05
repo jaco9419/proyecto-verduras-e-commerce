@@ -7,7 +7,7 @@ function AccountNotFound() {
     return (
         <div className="not__found">
             <p className="not__found__number">404</p>
-            <p>{accountPath} no existe</p>
+            <p>La cuenta relacionada a {accountPath} no existe</p>
         </div>
     );
 }

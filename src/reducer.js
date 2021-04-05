@@ -10,7 +10,8 @@ const newHref = href
     .replace('/products', '')
     .replace('/products/', '')
     .replace('/pedido', '')
-    .replace('/pedido/', '');
+    .replace('/pedido/', '')
+    .replace(`${accountPath}/`, `${accountPath}`);
 const origin = newHref.replaceAll(':', '%3A').replaceAll('/', '%2F');
 
 export const initialState = {
