@@ -5,7 +5,10 @@ import '../style/PedidosFormulario.css';
 const { REACT_APP_API_URL } = process.env;
 
 function PedidosFormulario() {
-    const [{ custumerInfo, accountName, mobilePhone }, dispatch] = useStateValue();
+    const [
+        { custumerInfo, accountName, mobilePhone },
+        dispatch,
+    ] = useStateValue();
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -26,7 +29,7 @@ function PedidosFormulario() {
 
     const postQuote = async () => {
         const API_URL = `${REACT_APP_API_URL}/data?accountName=${accountName}`;
-        const response = await fetch(API_URL, {
+        await fetch(API_URL, {
             method: 'post',
             headers: {
                 Accept: 'application/json',

@@ -16,6 +16,10 @@ const origin = newHref.replaceAll(':', '%3A').replaceAll('/', '%2F');
 
 export const initialState = {
     products: [],
+    numberProducts: 0,
+    productsPerPage: 10,
+    currentPage: 1,
+    pagesArray: [],
     basket: [],
     qty: [],
     qtyBasket: [],
@@ -24,13 +28,13 @@ export const initialState = {
     accountInfo: {},
     origin,
     productsViewList: false,
-    mobilePhone: "11",
+    mobilePhone: '11',
     custumerInfo: {},
     currentProduct: [],
     searchWord: '',
     counter: 7,
     isSearching: false,
-    phoneCode: "54",
+    phoneCode: '54',
 };
 
 const reducer = (state, action) => {
@@ -50,6 +54,7 @@ const reducer = (state, action) => {
             return {
                 ...state,
                 products: action.item.data,
+                numberProducts: action.item.numberProducts,
                 qty:
                     state.qty.length > 1
                         ? [...state.qty]
@@ -173,7 +178,8 @@ const reducer = (state, action) => {
                         phoneCode: action.item.targetValue,
                     };
                 case 'mobilePhone':
-                    const completeMobilePhone = state.phoneCode + "9" + action.item.targetValue;
+                    const completeMobilePhone =
+                        state.phoneCode + '9' + action.item.targetValue;
                     const incompleteMobilePhone = action.item.targetValue;
                     return {
                         ...state,
@@ -250,6 +256,30 @@ const reducer = (state, action) => {
             return {
                 ...state,
                 counter,
+            };
+        case 'SET_PAGE':
+            return {
+                ...state,
+                currentPage: action.item.page,
+            };
+        case 'PREVIOUS_PAGE':
+            let previousPage = state.currentPage;
+            if (previousPage > 1) {
+                previousPage--;
+            }
+            return {
+                ...state,
+                currentPage: previousPage,
+            };
+        case 'NEXT_PAGE':
+            let nextPage = state.currentPage;
+            const numberPages = Math.ceil(state.numberProducts / state.productsPerPage);
+            if (nextPage < numberPages) {
+                nextPage++;
+            }
+            return {
+                ...state,
+                currentPage: nextPage,
             };
         default:
             return state;

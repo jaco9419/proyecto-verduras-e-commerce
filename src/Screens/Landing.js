@@ -6,6 +6,7 @@ import { useStateValue } from '../StateProvider';
 import ListViewIcon from '@material-ui/icons/ViewList';
 import BoxViewIcon from '@material-ui/icons/Apps';
 import ProductosLista from '../Components/ProductosLista';
+import Pagination from '../Components/Pagination';
 
 function Landing() {
     const [
@@ -111,6 +112,8 @@ function Landing() {
                     </div>
                 )}
             </div>
+
+            <Pagination />
 
             <footer className="footer">
                 <p>© Derechos reservados</p>

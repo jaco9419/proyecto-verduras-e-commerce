@@ -1,0 +1,27 @@
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+}
+
+.pagination__btn {
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+    min-width: 2rem;
+    padding: 1rem;
+    transition: 0.3s;
+    font-family: var(--ff-primary);
+}
+
+.pagination__btn:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.pagination__btn:focus {
+    outline: 0;
+}
+
+.pagination__current {
+    background-color: rgba(0, 0, 0, 0.1);
+}

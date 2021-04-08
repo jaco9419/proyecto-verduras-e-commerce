@@ -17,7 +17,7 @@ const { REACT_APP_API_URL } = process.env;
 
 function App() {
     const [
-        { accountPath, accountName, qty, products, origin, counter },
+        { accountPath, accountName, qty, products, origin, counter, productsPerPage, currentPage },
         dispatch,
     ] = useStateValue();
 
@@ -41,8 +41,8 @@ function App() {
         await loadProducts(data[0]);
     };
 
-    const loadAccountInfo = async (aName) => {
-        const API_URL = `${REACT_APP_API_URL}/accounts/${aName}`;
+    const loadAccountInfo = async (account) => {
+        const API_URL = `${REACT_APP_API_URL}/accounts/${account}`;
         const response = await fetch(API_URL);
         const data = await response.json();
 
@@ -54,15 +54,21 @@ function App() {
         });
     };
 
-    const loadProducts = async (aName) => {
-        const API_URL = `${REACT_APP_API_URL}/accounts/${aName}/products?page=1&per_page=10`;
+    useEffect(() => {
+        loadProducts(accountName);
+    }, [currentPage]);
+
+    const loadProducts = async (account) => {
+        const API_URL = `${REACT_APP_API_URL}/accounts/${account}/products?page=${currentPage}&per_page=${productsPerPage}`;
         const response = await fetch(API_URL);
         const data = await response.json();
+        const numberProducts = response.headers.get('x-total-count');
 
         dispatch({
             type: 'LOAD_PRODUCTS',
             item: {
                 data,
+                numberProducts,
                 qty: qty[products.index],
             },
         });
