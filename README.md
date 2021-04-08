@@ -1,4 +1,5 @@
 # proyecto-verduras-e-commerce
+
 Proyecto Verduras e-commerce built in React.
 
 You can check out this project hosted on firebase by coyping the following link and adding a valid accounts path.
@@ -11,7 +12,49 @@ Or you can run it locally as follows:
 http://localhost:3000/accounts/puesto3/products
 _________________________________________________
 
-# Getting Started with Create React App
+## Firebase Deployment
+
+##### Go to https://firebase.google.com/
+
+* Login/sign up
+* Select firebase console (upper right corner)
+* Add new project
+* Enter your project name (e.g.: my-project)
+* Disable google analytics in case they are not needed and press create project
+
+##### On the project's root directory's console, enter the following commands:
+
+* `npm run build` (it generates a "./build" directory)
+* `npm install firebase-tools -g`
+* `firebase login` (enter firebase username and password if required)
+* `firebase init`
+
+* Answer the wizard's questions as follows or as needed:
+  * Are you ready to proceed? y
+  * Which Firebase cli features do you want to set up for this folder? Press space to select features: 
+  * (*) Hosting
+  * Please select an option: use existing proyect
+  * Select a default firebase project for this directory: "my-project"
+  * What do you want to use as your public directory? build
+  * Configure as a single-page app? y
+  * Set up automatic builds and deploys with GitHub? n
+  * Overwrite HTML ? n
+
+* `firebase deploy`
+
+##### Open the generated URL
+
+_________________________________________________
+
+## Update Firebase Project
+
+* `npm run build`
+* `firebase deploy`
+
+_________________________________________________
+
+
+## Getting Started with Create React App Locally
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
