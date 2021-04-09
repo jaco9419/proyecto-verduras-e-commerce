@@ -2,9 +2,9 @@ import React, { useEffect } from 'react';
 import { useStateValue } from '../StateProvider';
 import '../style/Pagination.css';
 
-function Pagination() {
+function Pagination({ handleLoadProducts }) {
     const [
-        { numberProducts, productsPerPage, currentPage, pagesArray },
+        { numberProducts, productsPerPage, currentPage, pagesArray, accountName },
         dispatch,
     ] = useStateValue();
 
@@ -49,13 +49,14 @@ function Pagination() {
         }
     };
 
-    const handlePagination = (page) => {
+    const handlePagination = async (page) => {
         dispatch({
             type: 'SET_PAGE',
             item: {
                 page,
             },
         });
+        //handleLoadProducts(accountName);
     };
 
     const previousPage = () => {

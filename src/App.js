@@ -17,7 +17,7 @@ const { REACT_APP_API_URL } = process.env;
 
 function App() {
     const [
-        { accountPath, accountName, qty, products, origin, counter, productsPerPage, currentPage },
+        { accountPath, accountName, qty, products, origin, counter, productsPerPage, currentPage, isFirstLoad },
         dispatch,
     ] = useStateValue();
 
@@ -55,7 +55,9 @@ function App() {
     };
 
     useEffect(() => {
-        loadProducts(accountName);
+        if (!isFirstLoad) {
+            loadProducts(accountName);
+        }
     }, [currentPage]);
 
     const loadProducts = async (account) => {

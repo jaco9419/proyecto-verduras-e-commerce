@@ -20,6 +20,7 @@ export const initialState = {
     productsPerPage: 10,
     currentPage: 1,
     pagesArray: [],
+    isFirstLoad: true,
     basket: [],
     qty: [],
     qtyBasket: [],
@@ -260,6 +261,7 @@ const reducer = (state, action) => {
         case 'SET_PAGE':
             return {
                 ...state,
+                isFirstLoad: false,
                 currentPage: action.item.page,
             };
         case 'PREVIOUS_PAGE':
@@ -269,6 +271,7 @@ const reducer = (state, action) => {
             }
             return {
                 ...state,
+                isFirstLoad: false,
                 currentPage: previousPage,
             };
         case 'NEXT_PAGE':
@@ -279,6 +282,7 @@ const reducer = (state, action) => {
             }
             return {
                 ...state,
+                isFirstLoad: false,
                 currentPage: nextPage,
             };
         default:
