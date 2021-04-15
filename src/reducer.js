@@ -7,11 +7,12 @@ const accountPath =
 const href = window.location.href;
 
 const newHref = href
-    .replace('/products', '')
-    .replace('/products/', '')
-    .replace('/pedido', '')
-    .replace('/pedido/', '')
+    .replace(`${accountPath}/products`, `${accountPath}`)
+    .replace(`${accountPath}/products/`, `${accountPath}`)
+    .replace(`${accountPath}/pedido`, `${accountPath}`)
+    .replace(`${accountPath}/pedido/`, `${accountPath}`)
     .replace(`${accountPath}/`, `${accountPath}`);
+
 const origin = newHref.replaceAll(':', '%3A').replaceAll('/', '%2F');
 
 export const initialState = {
