@@ -37,8 +37,8 @@ function App() {
             },
         });
 
-        await loadAccountInfo(data[0]);
-        await loadProducts(data[0]);
+        await loadAccountInfo(data.accountName);
+        await loadProducts(data.accountName);
     };
 
     const loadAccountInfo = async (account) => {
@@ -89,7 +89,7 @@ function App() {
                         <Pedidos />
                     </Route>
                     <Route path="/accounts/:accountPath/products">
-                        {Object.keys(accountName).length || counter - 2 > 0 ? (
+                        { accountName || counter - 2 > 0 ? (
                             <div>
                                 <Header />
                                 <Landing />

@@ -44,7 +44,7 @@ const reducer = (state, action) => {
         case 'LOAD_ACCOUNT_NAME':
             return {
                 ...state,
-                accountName: action.item.data[0],
+                accountName: action.item.data.accountName,
             };
         case 'LOAD_ACCOUNT_INFO':
             return {
