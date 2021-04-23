@@ -17,7 +17,6 @@ function Landing() {
             productsViewList,
             counter,
             searchOk,
-            isSearching,
         },
         dispatch,
     ] = useStateValue();

@@ -89,8 +89,6 @@ function App() {
         const data = await response.json();
         const numberProducts = response.headers.get('x-total-count');
 
-        console.debug(data.ok);
-
         if (data.ok === false) {
             dispatch({
                 type: 'LOAD_PRODUCTS_OK',
