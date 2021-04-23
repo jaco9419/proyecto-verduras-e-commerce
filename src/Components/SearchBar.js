@@ -7,25 +7,36 @@ const { REACT_APP_API_URL } = process.env;
 
 function SearchBar() {
     const [
-        { searchWord, qty, products, accountName },
+        { searchWord, qty, products, accountName, productsPerPage },
         dispatch,
     ] = useStateValue();
 
     const loadProducts = async () => {
         const API_URL =
             searchWord === ''
-                ? `${REACT_APP_API_URL}/accounts/${accountName}/products?page=1&per_page=10`
-                : `${REACT_APP_API_URL}/accounts/${accountName}/products?query=${searchWord}&page=1&per_page=10`;
+                ? `${REACT_APP_API_URL}/accounts/${accountName}/products?page=1&per_page=${productsPerPage}`
+                : `${REACT_APP_API_URL}/accounts/${accountName}/products?query=${searchWord}&page=1&per_page=${productsPerPage}`;
         const response = await fetch(API_URL);
         const data = await response.json();
-
-        dispatch({
-            type: 'LOAD_SEARCHED_PRODUCTS',
-            item: {
-                data,
-                qty: qty[products.index],
-            },
-        });
+        const numberProducts = response.headers.get('x-total-count');
+        
+        if (data.ok === false) {
+            dispatch({
+                type: 'LOAD_SEARCHED_PRODUCTS_OK',
+                item: {
+                    data,
+                },
+            });
+        } else {
+            dispatch({
+                type: 'LOAD_SEARCHED_PRODUCTS',
+                item: {
+                    data,
+                    numberProducts,
+                    qty: qty[products.index],
+                },
+            });
+        }
     };
 
     const handleInputChange = (event) => {

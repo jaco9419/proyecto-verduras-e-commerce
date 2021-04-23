@@ -46,6 +46,11 @@ const reducer = (state, action) => {
                 ...state,
                 accountName: action.item.data.accountName,
             };
+        case 'LOAD_ACCOUNT_NAME_OK':
+            return {
+                ...state,
+                accountNameOk: action.item.data.ok,
+            };
         case 'LOAD_ACCOUNT_INFO':
             return {
                 ...state,
@@ -61,6 +66,13 @@ const reducer = (state, action) => {
                     state.qty.length > 1
                         ? [...state.qty]
                         : Array(dataLength).fill(1),
+            };
+        case 'LOAD_PRODUCTS_OK':
+            return {
+                ...state,
+                products: [],
+                numberProducts: 0,
+                productsOk: action.item.data.ok,
             };
         case 'ADD_TO_BASKET': {
             const itemName = action.item.name;
@@ -247,8 +259,16 @@ const reducer = (state, action) => {
             return {
                 ...state,
                 products: filteredProducts,
+                numberProducts: action.item.numberProducts,
                 qty: Array(dataLengthy).fill(1),
                 isSearching: true,
+            };
+        case 'LOAD_SEARCHED_PRODUCTS_OK':
+            return {
+                ...state,
+                products: [],
+                numberProducts: 0,
+                searchOk: action.item.data.ok,
             };
         case 'DECREASE_COUNTER':
             let counter = state.counter;
@@ -277,7 +297,9 @@ const reducer = (state, action) => {
             };
         case 'NEXT_PAGE':
             let nextPage = state.currentPage;
-            const numberPages = Math.ceil(state.numberProducts / state.productsPerPage);
+            const numberPages = Math.ceil(
+                state.numberProducts / state.productsPerPage
+            );
             if (nextPage < numberPages) {
                 nextPage++;
             }

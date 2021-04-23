@@ -12,12 +12,24 @@ import Landing from './Screens/Landing';
 import Pedidos from './Screens/Pedidos';
 import ProductoDetalle from './Screens/ProductoDetalle';
 import AccountNotFound from './Screens/AccountNotFound';
+import Loading from './Components/Loading';
 
 const { REACT_APP_API_URL } = process.env;
 
 function App() {
     const [
-        { accountPath, accountName, qty, products, origin, counter, productsPerPage, currentPage, isFirstLoad },
+        {
+            accountPath,
+            accountName,
+            accountNameOk,
+            qty,
+            products,
+            origin,
+            productsPerPage,
+            currentPage,
+            isFirstLoad,
+            searchWord,
+        },
         dispatch,
     ] = useStateValue();
 
@@ -30,15 +42,24 @@ function App() {
         const response = await fetch(API_URL);
         const data = await response.json();
 
-        dispatch({
-            type: 'LOAD_ACCOUNT_NAME',
-            item: {
-                data,
-            },
-        });
+        if (data.ok === false) {
+            dispatch({
+                type: 'LOAD_ACCOUNT_NAME_OK',
+                item: {
+                    data,
+                },
+            });
+        } else {
+            dispatch({
+                type: 'LOAD_ACCOUNT_NAME',
+                item: {
+                    data,
+                },
+            });
 
-        await loadAccountInfo(data.accountName);
-        await loadProducts(data.accountName);
+            await loadAccountInfo(data.accountName);
+            await loadProducts(data.accountName);
+        }
     };
 
     const loadAccountInfo = async (account) => {
@@ -61,19 +82,32 @@ function App() {
     }, [currentPage]);
 
     const loadProducts = async (account) => {
-        const API_URL = `${REACT_APP_API_URL}/accounts/${account}/products?page=${currentPage}&per_page=${productsPerPage}`;
+        const API_URL = `${REACT_APP_API_URL}/accounts/${account}/products${
+            searchWord ? `?query=${searchWord}&` : '?'
+        }page=${currentPage}&per_page=${productsPerPage}`;
         const response = await fetch(API_URL);
         const data = await response.json();
         const numberProducts = response.headers.get('x-total-count');
 
-        dispatch({
-            type: 'LOAD_PRODUCTS',
-            item: {
-                data,
-                numberProducts,
-                qty: qty[products.index],
-            },
-        });
+        console.debug(data.ok);
+
+        if (data.ok === false) {
+            dispatch({
+                type: 'LOAD_PRODUCTS_OK',
+                item: {
+                    data,
+                },
+            });
+        } else {
+            dispatch({
+                type: 'LOAD_PRODUCTS',
+                item: {
+                    data,
+                    numberProducts,
+                    qty: qty[products.index],
+                },
+            });
+        }
     };
 
     return (
@@ -89,7 +123,13 @@ function App() {
                         <Pedidos />
                     </Route>
                     <Route path="/accounts/:accountPath/products">
-                        { accountName || counter - 2 > 0 ? (
+                        {/* Checks if it should show a loading screen. */}
+                        {accountNameOk !== false &&
+                        !accountNameOk &&
+                        (!accountName ||
+                            Object.keys(accountName).length === 0) ? (
+                            <Loading />
+                        ) : accountNameOk !== false ? (
                             <div>
                                 <Header />
                                 <Landing />

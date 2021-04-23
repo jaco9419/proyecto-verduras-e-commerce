@@ -10,7 +10,15 @@ import Pagination from '../Components/Pagination';
 
 function Landing() {
     const [
-        { products, qty, productsViewList, counter, isSearching },
+        {
+            products,
+            productsOk,
+            qty,
+            productsViewList,
+            counter,
+            searchOk,
+            isSearching,
+        },
         dispatch,
     ] = useStateValue();
 
@@ -36,9 +44,7 @@ function Landing() {
     return (
         <div className="landing">
             <div className="landing__message">
-                <p>
-                    Lista de productos
-                </p>
+                <p>Lista de productos</p>
             </div>
 
             <SearchBar />
@@ -93,15 +99,13 @@ function Landing() {
                             />
                         )
                     )
-                ) : counter > 0 ? (
+                ) : productsOk !== false && !productsOk && searchOk !== false ? (
                     <div className="landing__message__error">
                         <p>Cargando productos...</p>
                     </div>
-                ) : !isSearching ? (
+                ) : productsOk === false && searchOk !== false ? (
                     <div className="landing__message__error">
-                        <p>
-                            No existen productos en esta cuenta.
-                        </p>
+                        <p>No existen productos en esta cuenta.</p>
                     </div>
                 ) : (
                     <div className="landing__message__error">
