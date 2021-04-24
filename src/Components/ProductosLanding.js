@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import MinusIcon from '@material-ui/icons/Remove';
 import PlusIcon from '@material-ui/icons/Add';
 import { useStateValue } from '../StateProvider';
@@ -16,7 +16,10 @@ function ProductosLanding({
     index,
     description,
 }) {
-    const [{ accountPath }, dispatch] = useStateValue();
+    const [
+        { accountPath, refresh, products, restart },
+        dispatch,
+    ] = useStateValue();
     const addToBasket = () => {
         dispatch({
             type: 'ADD_TO_BASKET',
@@ -69,8 +72,16 @@ function ProductosLanding({
         });
     };
 
+    const restartAnimation = () => {
+        dispatch({
+            type: 'RESTART_ANIMATION_OFF',
+        });
+    };
+
     return (
         <Spring
+            reset={restart}
+            onRest={restartAnimation}
             from={{ opacity: 0, transform: 'translateX(-50px)' }}
             to={{ opacity: 1, transform: 'translateX(0px)' }}
             config={{ delay: index * 150, duration: 400 }}
@@ -145,7 +156,7 @@ function ProductosLanding({
                                         <MinusIcon className="minus__icon btn__quantity btn__control" />
                                     </button>
                                     <p className="product__quantity">
-                                        {qty[index]}
+                                        {qty[index] ? qty[index] : 1}
                                     </p>
                                     <button
                                         onClick={increaseQty}

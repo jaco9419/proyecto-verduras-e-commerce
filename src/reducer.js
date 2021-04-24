@@ -37,10 +37,21 @@ export const initialState = {
     counter: 7,
     isSearching: false,
     phoneCode: '54',
+    restart: false,
 };
 
 const reducer = (state, action) => {
     switch (action.type) {
+        case 'RESTART_ANIMATION':
+            return {
+                ...state,
+                restart: true,
+            };
+        case 'RESTART_ANIMATION_OFF':
+            return {
+                ...state,
+                restart: false,
+            };
         case 'LOAD_ACCOUNT_NAME':
             return {
                 ...state,
@@ -262,6 +273,8 @@ const reducer = (state, action) => {
                 numberProducts: action.item.numberProducts,
                 qty: Array(dataLengthy).fill(1),
                 isSearching: true,
+                currentPage: 1,
+                restart: true,
             };
         case 'LOAD_SEARCHED_PRODUCTS_OK':
             return {
@@ -282,8 +295,10 @@ const reducer = (state, action) => {
         case 'SET_PAGE':
             return {
                 ...state,
+                qty: Array(state.productsPerPage).fill(1),
                 isFirstLoad: false,
                 currentPage: action.item.page,
+                restart: true,
             };
         case 'PREVIOUS_PAGE':
             let previousPage = state.currentPage;
@@ -292,8 +307,10 @@ const reducer = (state, action) => {
             }
             return {
                 ...state,
+                qty: Array(state.productsPerPage).fill(1),
                 isFirstLoad: false,
                 currentPage: previousPage,
+                restart: true,
             };
         case 'NEXT_PAGE':
             let nextPage = state.currentPage;
@@ -305,8 +322,10 @@ const reducer = (state, action) => {
             }
             return {
                 ...state,
+                qty: Array(state.productsPerPage).fill(1),
                 isFirstLoad: false,
                 currentPage: nextPage,
+                restart: true,
             };
         default:
             return state;

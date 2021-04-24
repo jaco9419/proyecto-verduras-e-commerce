@@ -16,7 +16,7 @@ function ProductosLista({
     index,
     description,
 }) {
-    const [{ accountPath }, dispatch] = useStateValue();
+    const [{ accountPath, restart }, dispatch] = useStateValue();
     const addToBasket = () => {
         dispatch({
             type: 'ADD_TO_BASKET',
@@ -69,8 +69,16 @@ function ProductosLista({
         });
     };
 
+    const restartAnimation = () => {
+        dispatch({
+            type: 'RESTART_ANIMATION_OFF',
+        });
+    };
+
     return (
         <Spring
+            reset={restart}
+            onRest={restartAnimation}
             from={{ opacity: 0, transform: 'translateX(-50px)' }}
             to={{ opacity: 1, transform: 'translateX(0px)' }}
             config={{ delay: index * 150, duration: 400 }}

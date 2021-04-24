@@ -56,7 +56,6 @@ function Pagination({ handleLoadProducts }) {
                 page,
             },
         });
-        //handleLoadProducts(accountName);
     };
 
     const previousPage = () => {
