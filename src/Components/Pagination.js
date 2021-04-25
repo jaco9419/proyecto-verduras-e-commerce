@@ -4,7 +4,7 @@ import '../style/Pagination.css';
 
 function Pagination({ handleLoadProducts }) {
     const [
-        { numberProducts, productsPerPage, currentPage, pagesArray, accountName },
+        { numberProducts, productsPerPage, currentPage, pagesArray },
         dispatch,
     ] = useStateValue();
 

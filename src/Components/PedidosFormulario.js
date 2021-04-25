@@ -13,6 +13,7 @@ function PedidosFormulario() {
     const handleSubmit = (event) => {
         event.preventDefault();
         postQuote();
+        openQuoteResponse();
     };
 
     const handleInputChange = (event) => {
@@ -29,7 +30,7 @@ function PedidosFormulario() {
 
     const postQuote = async () => {
         const API_URL = `${REACT_APP_API_URL}/data?accountName=${accountName}`;
-        await fetch(API_URL, {
+        const response = await fetch(API_URL, {
             method: 'post',
             headers: {
                 Accept: 'application/json',
@@ -37,7 +38,22 @@ function PedidosFormulario() {
             },
             body: JSON.stringify(custumerInfo),
         });
+        const data = await response.json();
+        dispatch({
+            type: 'POST_QUOTE_RESPONSE',
+            item: {
+                data,
+            },
+        });
+        
     };
+
+    const openQuoteResponse = () => {
+        dispatch({
+            type: 'OPEN_QUOTE_RESPONSE',
+        });
+    };
+
     return (
         <div className="pedidos__form__container">
             <form

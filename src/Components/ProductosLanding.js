@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import MinusIcon from '@material-ui/icons/Remove';
 import PlusIcon from '@material-ui/icons/Add';
 import { useStateValue } from '../StateProvider';
@@ -17,7 +17,7 @@ function ProductosLanding({
     description,
 }) {
     const [
-        { accountPath, refresh, products, restart },
+        { accountPath, restart },
         dispatch,
     ] = useStateValue();
     const addToBasket = () => {

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import '../style/Landing.css';
 import SearchBar from '../Components/SearchBar';
 import ProductosLanding from '../Components/ProductosLanding';
@@ -15,24 +15,10 @@ function Landing() {
             productsOk,
             qty,
             productsViewList,
-            counter,
             searchOk,
         },
         dispatch,
     ] = useStateValue();
-
-    useEffect(() => {
-        decreaseCounter();
-    }, []);
-
-    const decreaseCounter = () => {
-        setTimeout(() => {
-            dispatch({
-                type: 'DECREASE_COUNTER',
-            });
-            decreaseCounter();
-        }, 1000);
-    };
 
     const toggleProductsView = () => {
         dispatch({

@@ -9,8 +9,8 @@ const href = window.location.href;
 const newHref = href
     .replace(`${accountPath}/products`, `${accountPath}`)
     .replace(`${accountPath}/products/`, `${accountPath}`)
-    .replace(`${accountPath}/pedido`, `${accountPath}`)
-    .replace(`${accountPath}/pedido/`, `${accountPath}`)
+    .replace(`${accountPath}/pedidos`, `${accountPath}`)
+    .replace(`${accountPath}/pedidos/`, `${accountPath}`)
     .replace(`${accountPath}/`, `${accountPath}`);
 
 const origin = newHref.replaceAll(':', '%3A').replaceAll('/', '%2F');
@@ -30,11 +30,11 @@ export const initialState = {
     accountInfo: {},
     origin,
     productsViewList: false,
-    mobilePhone: '11',
     custumerInfo: {},
+    postQuoteOk: '',
+    isQuoteResponseOpen: false,
     currentProduct: [],
     searchWord: '',
-    counter: 7,
     isSearching: false,
     phoneCode: '54',
     restart: false,
@@ -177,6 +177,31 @@ const reducer = (state, action) => {
                 ...state,
                 productsViewList: !state.productsViewList,
             };
+        case 'POST_QUOTE_RESPONSE':
+            return {
+                ...state,
+                postQuoteOk: action.item.data.ok,
+            };
+        case 'CLOSE_QUOTE_RESPONSE_OK':
+            return {
+                ...state,
+                basket: [],
+                qtyBasket: [],
+                custumerInfo: {},
+                postQuoteOk: '',
+                isQuoteResponseOpen: false,
+            };
+        case 'CLOSE_QUOTE_RESPONSE_ERROR':
+            return {
+                ...state,
+                postQuoteOk: '',
+                isQuoteResponseOpen: false,
+            };
+        case 'OPEN_QUOTE_RESPONSE':
+            return {
+                ...state,
+                isQuoteResponseOpen: true,
+            };
         case 'HANDLE_INPUT_CHANGE':
             switch (action.item.targetName) {
                 case 'name':
@@ -282,15 +307,6 @@ const reducer = (state, action) => {
                 products: [],
                 numberProducts: 0,
                 searchOk: action.item.data.ok,
-            };
-        case 'DECREASE_COUNTER':
-            let counter = state.counter;
-            if (counter > 0) {
-                counter--;
-            }
-            return {
-                ...state,
-                counter,
             };
         case 'SET_PAGE':
             return {
