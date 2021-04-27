@@ -78,6 +78,18 @@ function ProductosLanding({
         });
     };
 
+    const addBasketAnimation = () => {
+        dispatch({
+            type: 'ADD_BASKET_ANIMATION',
+        });
+    }
+
+    const removeBasketAnimation = () => {
+        dispatch({
+            type: 'REMOVE_BASKET_ANIMATION',
+        });
+    };
+
     return (
         <Spring
             reset={restart}
@@ -167,6 +179,8 @@ function ProductosLanding({
                                 </div>
                                 <button
                                     onClick={addToBasket}
+                                    onMouseDown={addBasketAnimation}
+                                    onMouseUp={removeBasketAnimation}
                                     className="btn__quantity btn__add"
                                 >
                                     Agregar

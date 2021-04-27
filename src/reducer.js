@@ -32,12 +32,14 @@ export const initialState = {
     productsViewList: false,
     custumerInfo: {},
     postQuoteOk: '',
+    isAPerson: false,
     isQuoteResponseOpen: false,
     currentProduct: [],
     searchWord: '',
     isSearching: false,
     phoneCode: '54',
     restart: false,
+    animateBasket: false,
 };
 
 const reducer = (state, action) => {
@@ -182,6 +184,11 @@ const reducer = (state, action) => {
                 ...state,
                 postQuoteOk: action.item.data.ok,
             };
+        case 'VERIFY_RECAPTCHA':
+            return {
+                ...state,
+                isAPerson: true,
+            };
         case 'CLOSE_QUOTE_RESPONSE_OK':
             return {
                 ...state,
@@ -190,12 +197,14 @@ const reducer = (state, action) => {
                 custumerInfo: {},
                 postQuoteOk: '',
                 isQuoteResponseOpen: false,
+                isAPerson: false,
             };
         case 'CLOSE_QUOTE_RESPONSE_ERROR':
             return {
                 ...state,
                 postQuoteOk: '',
                 isQuoteResponseOpen: false,
+                isAPerson: true,
             };
         case 'OPEN_QUOTE_RESPONSE':
             return {
@@ -342,6 +351,16 @@ const reducer = (state, action) => {
                 isFirstLoad: false,
                 currentPage: nextPage,
                 restart: true,
+            };
+        case 'ADD_BASKET_ANIMATION':
+            return {
+                ...state,
+                animateBasket: true,
+            };
+        case 'REMOVE_BASKET_ANIMATION':
+            return {
+                ...state,
+                animateBasket: false,
             };
         default:
             return state;

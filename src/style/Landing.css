@@ -190,6 +190,10 @@
     transition: 0.3s;
 }
 
+.btn__add:active, .btn__delete:active {
+    transform: translateY(2px);
+}
+
 .minus__icon {
     width: 100% !important;
     height: 100% !important;

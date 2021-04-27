@@ -1,19 +1,31 @@
 import React from 'react';
 import { useStateValue } from '../StateProvider';
 import '../style/PedidosFormulario.css';
+import ReCAPTCHA from "react-google-recaptcha";
 
-const { REACT_APP_API_URL } = process.env;
+const { REACT_APP_API_URL, REACT_APP_RECAPTCHA_SITE_KEY } = process.env;
 
 function PedidosFormulario() {
     const [
-        { custumerInfo, accountName, mobilePhone },
+        { custumerInfo, accountName, mobilePhone, isAPerson },
         dispatch,
     ] = useStateValue();
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        postQuote();
-        openQuoteResponse();
+        if (isAPerson) {
+            postQuote();
+            openQuoteResponse();
+        }        
+    };
+
+    const handleRecaptchaChange = (value) => {
+        console.log("Captcha value:", value);
+        if (value) {
+            dispatch({
+                type: 'VERIFY_RECAPTCHA',
+            });
+        }
     };
 
     const handleInputChange = (event) => {
@@ -143,6 +155,12 @@ function PedidosFormulario() {
                     onChange={handleInputChange}
                     value={custumerInfo.zipCode}
                     required
+                />
+
+                <ReCAPTCHA
+                    sitekey={REACT_APP_RECAPTCHA_SITE_KEY}
+                    onChange={handleRecaptchaChange}
+                    style={{marginTop: '1rem',}}
                 />
 
                 <button type="submit" className="btn__confirmar">

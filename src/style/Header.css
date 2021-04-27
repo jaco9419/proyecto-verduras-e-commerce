@@ -98,6 +98,16 @@
     right: 0;
 }
 
+.animate__basket {
+    animation: animateBasket 0.1s cubic-bezier(0.39, 0.575, 0.565, 1);
+}
+
+@keyframes animateBasket {
+    100% {
+        transform: scale(1.2);
+    }
+}
+
 .header__cart__number p {
     font-size: 1rem;
 }
